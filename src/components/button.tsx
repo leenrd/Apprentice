@@ -6,10 +6,10 @@ interface ButtonProps {
   btnFC: () => void;
 }
 
-const Button: FC<ButtonProps> = ({ variant, label, btnFC }) => {
+const Button: FC = () => {
   return (
-    <button className={variant} onClick={btnFC}>
-      {label}
+    <button className="bg-slate-900 text-white py-3 px-6 rounded-md font-medium hover:bg-slate-800">
+      Button
     </button>
   );
 };

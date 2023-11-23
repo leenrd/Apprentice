@@ -1,7 +1,11 @@
+import Button from "./components/button";
+
 function App() {
   return (
     <>
-      <main>Yo</main>
+      <main className="flex items-center justify-center h-screen">
+        <Button />
+      </main>
     </>
   );
 }

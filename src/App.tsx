@@ -1,10 +1,10 @@
-import Button from "./components/button";
+import { Button } from "@/components/button";
 
 function App() {
   return (
     <>
       <main className="flex items-center justify-center h-screen">
-        <Button />
+        <Button variant={"destructive"}>Button</Button>
       </main>
     </>
   );

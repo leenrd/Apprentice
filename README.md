@@ -22,6 +22,7 @@ A Full-stack Library Management Application (LMS) created using MERN (MongoDB, E
 
 ## Lessons Learned
 
+- Using class-variance-authority, tailwind-merge, and clsx for resuable components
 - Auth using clerk
 - ...
 

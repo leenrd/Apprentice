@@ -4,7 +4,7 @@ import { Button } from "@/components/button";
 function App() {
   return (
     <>
-      <main>
+      <main className="font-general">
         <SignInPage />
       </main>
     </>

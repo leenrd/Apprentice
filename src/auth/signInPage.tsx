@@ -12,8 +12,8 @@ const SignInPage = () => {
 
 const CreatorPill = () => {
   return (
-    <div className="bg-white  rounded-full py-2 px-5 flex items-center justify-center">
-      <p className="font-semibold text-sm text-black">Leenard Zarate</p>
+    <div className="bg-white/30 rounded-full py-2 px-5 flex items-center justify-center">
+      <p className="text-sm text-white font-semibold">By Leenard Zarate</p>
     </div>
   );
 };

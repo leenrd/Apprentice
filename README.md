@@ -21,7 +21,7 @@ A Full-stack Library Management Application (LMS) created using MERN (MongoDB, E
 
 - Using class-variance-authority, tailwind-merge, and clsx for resuable components
 - config vite w/ typescript path mapping
-- Auth using clerk
+- Validation using react-hook-form and zod
 - ...
 
 ## Screenshots

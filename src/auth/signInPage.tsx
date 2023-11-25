@@ -1,9 +1,16 @@
 import { Button } from "@/components/button";
+import { useForm } from "react-hook-form";
 
 const SignInPage = () => {
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors, isSubmitting },
+  // } = useForm();
+
   return (
     <div className="h-screen grid grid-cols-2">
-      <div className="bg-[url('./public/bgauth.jpg')] bg-center bg-cover flex flex-col items-start justify-between p-6">
+      <div className="bg-[url('/bgauth.jpg')] bg-center bg-cover flex flex-col items-start justify-between p-6">
         <CreatorPill />
         <p className="text-white ">2023 Apprentice. | All rights reserved.</p>
       </div>
@@ -17,13 +24,15 @@ const SignInPage = () => {
         <div className="flex flex-col gap-2 items-center w-[45%]">
           <input
             type="text"
-            className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%]"
+            className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700"
             placeholder="Username"
+            required
           />
           <input
             type="password"
-            className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] mb-8"
+            className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700 mb-8"
             placeholder="Password"
+            required
           />
           <input
             type="submit"

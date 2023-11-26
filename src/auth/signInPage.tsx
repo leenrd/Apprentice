@@ -36,14 +36,14 @@ const SignInPage = () => {
           />
           <input
             type="submit"
-            className="font-semibold rounded-md text-sm active:scale-95 text-white px-6 py-2 w-[100%] bg-blue-700 hover:bg-blue-600"
+            className="cursor-pointer font-semibold rounded-md text-sm active:scale-95 text-white px-6 py-2 w-[100%] bg-blue-700 hover:bg-blue-600 mb-2"
             value="Sign in"
           />
           <Button variant={"ghost"} className="py-0 hover:text-blue-600">
             Use test account?
           </Button>
           <div className="my-8 border-[.6px] border-gray-200 w-[100%]" />
-          <p className="text-sm text-gray-500">Don't have an account?</p>
+          <p className="text-sm text-gray-500 mb-2">Don't have an account?</p>
           <Button variant={"outline"} className="w-[100%] py-2">
             Create account
           </Button>

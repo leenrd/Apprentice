@@ -1,6 +1,12 @@
+// import { useForm } from "react-hook-form";
 import { Button } from "@/components/button";
+import { FC } from "react";
 
-const FormSignUp = () => {
+type FormSignUpProp = {
+  setIsLogIn: (prev: (prev: boolean) => boolean) => void;
+};
+
+const FormSignUp: FC<FormSignUpProp> = ({ setIsLogIn }) => {
   return (
     <>
       <div className="flex flex-col items-center mb-10">
@@ -27,6 +33,7 @@ const FormSignUp = () => {
           className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700"
           placeholder="Password"
           required
+          autoComplete="new-password"
         />
         <input
           type="password"
@@ -48,6 +55,18 @@ const FormSignUp = () => {
           <Button variant={"long"} className="mt-3">
             Next step
           </Button>
+          <div className="flex justify-center w-[100%]">
+            <p className="text-xs text-gray-600 mt-4 text-center">
+              Already have an account?
+              <a
+                className="underline cursor-pointer"
+                onClick={() => setIsLogIn((prev) => !prev)}
+              >
+                {" "}
+                Sign in
+              </a>
+            </p>
+          </div>
         </div>
       </form>
     </>

@@ -1,6 +1,11 @@
 import { Button } from "@/components/button";
+import { FC } from "react";
 
-const FormSignIn = () => {
+type FormSignInProp = {
+  setIsLogIn: (prev: (prev: boolean) => boolean) => void;
+};
+
+const FormSignIn: FC<FormSignInProp> = ({ setIsLogIn }) => {
   return (
     <>
       <div className="flex flex-col items-center gap-5 mb-10">
@@ -21,6 +26,7 @@ const FormSignIn = () => {
           className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700 mb-8"
           placeholder="Password"
           required
+          autoComplete="new-password"
         />
         <input
           type="submit"
@@ -32,7 +38,11 @@ const FormSignIn = () => {
         </Button>
         <div className="my-8 border-[.6px] border-gray-200 w-[100%]" />
         <p className="text-sm text-gray-500 mb-2">Don't have an account?</p>
-        <Button variant={"outline"} className="w-[100%] py-2">
+        <Button
+          variant={"outline"}
+          className="w-[100%] py-2"
+          onClick={() => setIsLogIn((prev) => !prev)}
+        >
           Create account
         </Button>
       </form>

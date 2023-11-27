@@ -1,10 +1,10 @@
-import { useForm } from "react-hook-form";
 import FormSignIn from "./FormSignIn";
 import FormSignUp from "./FormSignUp";
-import FormAdminSignup from "./FormAdminSignup";
-import FormStudentSignup from "./FormStudentSignup";
+import { useState } from "react";
 
 const SignInPage = () => {
+  const [isLogin, setIsLogIn] = useState(true);
+
   return (
     <div className="h-screen grid grid-cols-2">
       <div className="bg-[url('/bgauth.jpg')] bg-center bg-cover flex flex-col items-start justify-between p-6">
@@ -12,7 +12,11 @@ const SignInPage = () => {
         <p className="text-white ">2023 Apprentice. | All rights reserved.</p>
       </div>
       <div className="flex flex-col items-center justify-center">
-        <FormStudentSignup />
+        {isLogin ? (
+          <FormSignIn setIsLogIn={setIsLogIn} />
+        ) : (
+          <FormSignUp setIsLogIn={setIsLogIn} />
+        )}
       </div>
     </div>
   );

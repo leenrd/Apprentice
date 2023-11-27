@@ -1,4 +1,6 @@
-const FormAdminSignup = () => {
+import React from "react";
+
+const FormStudentSignup = () => {
   return (
     <>
       <div className="flex flex-col items-center mb-10">
@@ -12,7 +14,7 @@ const FormAdminSignup = () => {
       </div>
       <form className="flex flex-col gap-2 items-center w-[45%]">
         <div className="w-[100%]">
-          <label className="text-sm font-normal">Admin Information</label>
+          <label className="text-sm font-normal">Student Information</label>
           <input
             type="text"
             className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700 mt-2"
@@ -23,7 +25,13 @@ const FormAdminSignup = () => {
         <input
           type="text"
           className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700"
-          placeholder="Staff ID"
+          placeholder="Student ID"
+          required
+        />
+        <input
+          type="text"
+          className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700"
+          placeholder="Course"
           required
         />
         <input
@@ -36,4 +44,4 @@ const FormAdminSignup = () => {
   );
 };
 
-export default FormAdminSignup;
+export default FormStudentSignup;

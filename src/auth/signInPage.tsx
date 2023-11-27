@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import FormSignIn from "./FormSignIn";
 import FormSignUp from "./FormSignUp";
 import FormAdminSignup from "./FormAdminSignup";
+import FormStudentSignup from "./FormStudentSignup";
 
 const SignInPage = () => {
   return (
@@ -11,7 +12,7 @@ const SignInPage = () => {
         <p className="text-white ">2023 Apprentice. | All rights reserved.</p>
       </div>
       <div className="flex flex-col items-center justify-center">
-        <FormAdminSignup />
+        <FormStudentSignup />
       </div>
     </div>
   );

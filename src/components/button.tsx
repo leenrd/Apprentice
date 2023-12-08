@@ -30,4 +30,4 @@ const Button: FC<ButtonProps> = ({ className, variant, ...props }) => {
   );
 };
 
-export { Button, buttonVariants };
+export { Button };

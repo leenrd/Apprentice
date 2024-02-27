@@ -9,17 +9,18 @@ A Full-stack Library Management Application (LMS) created using MERN (MongoDB, E
 ## Features
 
 - [ ] Authentication using clerk
-- Multi-user Dashboard
-- Dark/Light Mode
-- Tabular Management of Data
-- Beautiful User Interface/Experience
-- Backend with Typescript
+- [ ] Multi-user Dashboard
+- [ ] Dark/Light Mode
+- [ ] Tabular Management of Data
+- [ ] Beautiful User Interface/Experience
+- [ ] Backend with Typescript
 
 ## Tech Stack
 
-**Client:** React, Typescript, TailwindCSS
-
-**Server:** Node, Express, MongoDB
+**Client:**
+![](https://skillicons.dev/icons?i=typescript,react,tailwind)
+**Server:**
+![](https://skillicons.dev/icons?i=typescript,nodejs,express,mongodb)
 
 ## Screenshots
 

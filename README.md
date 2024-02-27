@@ -1,10 +1,14 @@
-# Apprentice (Work In Progress)
+# Apprentice
 
 A Full-stack Library Management Application (LMS) created using MERN (MongoDB, Express, React, and Node) stack, as well as Typescript and Tailwind.
 
+> [!Important]
+>
+> Application in progress.
+
 ## Features
 
-- Authentication using clerk
+- [ ] Authentication using clerk
 - Multi-user Dashboard
 - Dark/Light Mode
 - Tabular Management of Data
@@ -16,13 +20,6 @@ A Full-stack Library Management Application (LMS) created using MERN (MongoDB, E
 **Client:** React, Typescript, TailwindCSS
 
 **Server:** Node, Express, MongoDB
-
-## Lessons Learned
-
-- Using class-variance-authority, tailwind-merge, and clsx for resuable components
-- config vite w/ typescript path mapping
-- Validation using react-hook-form and zod
-- ...
 
 ## Screenshots
 

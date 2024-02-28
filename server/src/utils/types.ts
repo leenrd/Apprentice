@@ -19,6 +19,7 @@ export type BookType = {
   subject: number;
   borrowedDate: Date;
   returnedDate: Date;
+  borrowedLogs: BookType[];
 };
 
 export type BorrowType = {
@@ -27,6 +28,4 @@ export type BorrowType = {
   studentId: string;
   borrowedAt: Date;
   returnedAt: Date | null; // null if not returned yet
-  borrowLog: string[];
-  notes: string;
 };

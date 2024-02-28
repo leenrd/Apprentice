@@ -1,14 +1,13 @@
-export type StudentType = {
-  _id: string;
-  username: string;
-  password: string;
-  borrowedBooks: string[];
-};
+export enum UserRoles {
+  ADMIN,
+  STUDENT,
+}
 
-export type AdminType = {
+export type UserType = {
   _id: string;
   username: string;
   password: string;
+  role: UserRoles;
 };
 
 export type BookType = {
@@ -17,10 +16,17 @@ export type BookType = {
   author: string;
   isbn: string;
   publisher: string;
-  year: number;
   subject: number;
-  borrowedBy: string;
   borrowedDate: Date;
   returnedDate: Date;
-  borrowedLogs: string[];
+};
+
+export type BorrowType = {
+  _id: string;
+  bookId: string;
+  studentId: string;
+  borrowedAt: Date;
+  returnedAt: Date | null; // null if not returned yet
+  borrowLog: string[];
+  notes: string;
 };

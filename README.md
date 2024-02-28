@@ -9,6 +9,7 @@ A Full-stack Library Management Application (LMS) created using MERN (MongoDB, E
 ## Features
 
 - [ ] Authentication using clerk
+- [ ] User Roles (Librarian(admin), Student)
 - [ ] Multi-user Dashboard
 - [ ] Dark/Light Mode
 - [ ] Tabular Management of Data

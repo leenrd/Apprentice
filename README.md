@@ -8,13 +8,18 @@ A Full-stack Library Management Application (LMS) created using MERN (MongoDB, E
 
 ## Features
 
+| Client                            | Server               |
+| --------------------------------- | -------------------- |
+| Authentication                    | User Roles           |
+| Tabular UI                        | Mongo schema         |
+| Typescript                        | Typescript           |
+| Dynamic pages(based on user role) | User role middleware |
+
 - [ ] Authentication using clerk
-- [ ] User Roles (Librarian(admin), Student)
 - [ ] Multi-user Dashboard
 - [ ] Dark/Light Mode
 - [ ] Tabular Management of Data
-- [ ] Beautiful User Interface/Experience
-- [ ] Backend with Typescript
+- [x] Backend with Typescript
 
 ## Tech Stack
 

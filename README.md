@@ -17,10 +17,8 @@ A Full-stack Library Management Application (LMS) created using MERN (MongoDB, E
 
 ## Tech Stack
 
-**Client:** <br />
-![](https://skillicons.dev/icons?i=typescript,react,tailwind)<br />
-**Server:** <br />
-![](https://skillicons.dev/icons?i=typescript,nodejs,express,mongodb)
+**Client:** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Server:** <br />
+![](https://skillicons.dev/icons?i=typescript,react,tailwind) &nbsp;&nbsp; ![](https://skillicons.dev/icons?i=typescript,nodejs,express,mongodb)
 
 ## Screenshots
 

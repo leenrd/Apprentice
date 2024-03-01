@@ -1,6 +1,6 @@
 # Apprentice
 
-A Full-stack Library Management Application (LMS) created using MERN (MongoDB, Express, React, and Node) stack, as well as Typescript and Tailwind.
+A Full-stack Inventory Management Application (IMS) created using MERN (MongoDB, Express, React, and Node) stack, as well as Typescript and Tailwind.
 
 > [!Important]
 >

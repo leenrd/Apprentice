@@ -26,7 +26,9 @@ Improved Efficiency and Productivity:
 
     - Automate manual tasks like order processing, and reporting.
     - Streamline warehouse operations through features like pick-and-pack functionality.
-
+> [!Note]
+>
+> Features or tech stack is subject to change.
 
 ### Technical overview
 
@@ -43,7 +45,7 @@ Improved Efficiency and Productivity:
 - [ ] Tabular Management of Data
 - [x] Backend with Typescript
 
-## Tech Stack
+### Tech Stack
 
 **Client:** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Server:** <br />
 ![](https://skillicons.dev/icons?i=typescript,react,tailwind) &nbsp;&nbsp; ![](https://skillicons.dev/icons?i=typescript,nodejs,express,mongodb)

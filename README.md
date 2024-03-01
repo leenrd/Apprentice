@@ -28,5 +28,6 @@ A Full-stack Inventory Management Application (IMS) created using MERN (MongoDB,
 
 ## Screenshots
 
-![SignIn](https://github.com/leenrd/Apprentice/assets/103997539/4f96b560-e66c-46fe-aadc-ff81013d1ca0)
-![admin - dashboard](https://github.com/leenrd/Apprentice/assets/103997539/0b251df2-17a7-43aa-bd30-ee376ca159b9)
+![SignIn](https://github.com/leenrd/Apprentice/assets/103997539/cd993aa3-aa38-4658-a469-dcfe71be7e68)
+![admin - dashboard2](https://github.com/leenrd/Apprentice/assets/103997539/e258d9fa-48f9-4858-95c0-e4ecb8844684)
+

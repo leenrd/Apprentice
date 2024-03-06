@@ -1,5 +1,3 @@
-import React from "react";
-
 const FormStudentSignup = () => {
   return (
     <>
@@ -17,26 +15,26 @@ const FormStudentSignup = () => {
           <label className="text-sm font-normal">Student Information</label>
           <input
             type="text"
-            className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700 mt-2"
+            className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700 mt-2"
             placeholder="Name"
             required
           />
         </div>
         <input
           type="text"
-          className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700"
+          className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700"
           placeholder="Student ID"
           required
         />
         <input
           type="text"
-          className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700"
+          className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700"
           placeholder="Course"
           required
         />
         <input
           type="submit"
-          className="cursor-pointer font-semibold rounded-md text-sm active:scale-95 text-white px-6 py-2 w-[100%] bg-blue-700 hover:bg-blue-600 mt-5"
+          className="cursor-pointer font-semibold rounded-md text-sm active:scale-95 text-white px-6 py-2 w-[100%] bg-orange-700 hover:bg-orange-600 mt-5"
           value="Sign in"
         />
       </form>

@@ -1,4 +1,4 @@
-import SignInPage from "./auth/signInPage";
+import SignInPage from "./pages/signInPage";
 
 function App() {
   return (

@@ -11,7 +11,7 @@ const FormSignUp: FC<FormSignUpProp> = ({ setIsLogIn }) => {
     <>
       <div className="flex flex-col items-center mb-10">
         <div className="mb-5">
-          <img src="/favicon.png" alt="logo" />
+          <img src="/auth/app_favicon.png" alt="logo" />
         </div>
         <p className="font-bold text-3xl">Create an account</p>
         <p className="text-gray-400 text-sm">
@@ -23,21 +23,21 @@ const FormSignUp: FC<FormSignUpProp> = ({ setIsLogIn }) => {
           <label className="text-sm font-normal">User Information</label>
           <input
             type="text"
-            className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700 mt-2"
+            className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700 mt-2"
             placeholder="Username"
             required
           />
         </div>
         <input
           type="password"
-          className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700"
+          className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700"
           placeholder="Password"
           required
           autoComplete="new-password"
         />
         <input
           type="password"
-          className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700 mb-8"
+          className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700 mb-8"
           placeholder="Retype password"
           required
         />
@@ -47,7 +47,7 @@ const FormSignUp: FC<FormSignUpProp> = ({ setIsLogIn }) => {
             name="accType"
             id="accountType"
             required
-            className="mt-2 pl-5 pr-7 py-3 bg-transparent border-gray-300 border-2 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-blue-700"
+            className="mt-2 pl-5 pr-7 py-3 bg-transparent border-gray-300 border-2 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700"
           >
             <option value="student">Student</option>
             <option value="admin">Admin</option>

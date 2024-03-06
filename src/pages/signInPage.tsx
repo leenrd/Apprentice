@@ -1,5 +1,5 @@
-import FormSignIn from "./FormSignIn";
-import FormSignUp from "./FormSignUp";
+import FormSignIn from "../auth/(main)/FormSignIn";
+import FormSignUp from "../auth/(main)/FormSignUp";
 import { useState } from "react";
 
 const SignInPage = () => {
@@ -7,7 +7,7 @@ const SignInPage = () => {
 
   return (
     <div className="h-screen grid grid-cols-2">
-      <div className="bg-[url('/bgauth.jpg')] bg-center bg-cover flex flex-col items-start justify-between p-6">
+      <div className="bg-[url('/auth/sp_bg.png')] bg-center bg-cover flex flex-col items-start justify-between p-6">
         <CreatorPill />
         <p className="text-white ">2023 Apprentice. | All rights reserved.</p>
       </div>

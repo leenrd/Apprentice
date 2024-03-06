@@ -1,6 +1,6 @@
 export enum UserRoles {
+  STAFF,
   ADMIN,
-  STUDENT,
 }
 
 export type UserType = {
@@ -10,22 +10,18 @@ export type UserType = {
   role: UserRoles;
 };
 
-export type BookType = {
+export type ItemType = {
   _id: string;
-  title: string;
-  author: string;
-  isbn: string;
-  publisher: string;
-  subject: number;
-  borrowedDate: Date;
-  returnedDate: Date;
-  borrowedLogs: BookType[];
-};
-
-export type BorrowType = {
-  _id: string;
-  bookId: string;
-  studentId: string;
-  borrowedAt: Date;
-  returnedAt: Date | null; // null if not returned yet
+  fillUpDate: Date;
+  deliveryType: string;
+  storeGroup: string;
+  storeName: string;
+  description: string;
+  itemCategory: string;
+  orderQuantity: number;
+  deliveredQuantity: number;
+  packageType: string;
+  quantityPerPackage: number;
+  costPerPackage: number;
+  costPerUnit: number;
 };

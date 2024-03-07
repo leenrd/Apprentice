@@ -11,7 +11,7 @@ const FormSignUp: FC<FormSignUpProp> = ({ setIsLogIn }) => {
     <>
       <div className="flex flex-col items-center mb-10">
         <div className="mb-5">
-          <img src="/auth/app_favicon.png" alt="logo" />
+          <img src="/auth/app_favicon.png" alt="logo" className="w-11 h-11" />
         </div>
         <p className="font-bold text-3xl">Create an account</p>
         <p className="text-gray-400 text-sm">
@@ -38,7 +38,7 @@ const FormSignUp: FC<FormSignUpProp> = ({ setIsLogIn }) => {
         <input
           type="password"
           className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700 mb-8"
-          placeholder="Retype password"
+          placeholder="Confirm password"
           required
         />
         <div className="w-[100%] flex flex-col items-start">
@@ -49,21 +49,20 @@ const FormSignUp: FC<FormSignUpProp> = ({ setIsLogIn }) => {
             required
             className="mt-2 pl-5 pr-7 py-3 bg-transparent border-gray-300 border-2 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700"
           >
-            <option value="student">Student</option>
+            <option value="student">Staff</option>
             <option value="admin">Admin</option>
           </select>
           <Button variant={"long"} className="mt-3">
-            Next step
+            Sign up
           </Button>
           <div className="flex justify-center w-[100%]">
             <p className="text-xs text-gray-600 mt-4 text-center">
               Already have an account?
               <a
-                className="underline cursor-pointer"
+                className="underline cursor-pointer ml-1"
                 onClick={() => setIsLogIn((prev) => !prev)}
               >
-                {" "}
-                Sign in
+                Log in
               </a>
             </p>
           </div>

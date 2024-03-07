@@ -1,4 +1,4 @@
-import FormSignIn from "../auth/(main)/FormSignIn";
+import FormLogIn from "../auth/(main)/FormLogIn";
 import FormSignUp from "../auth/(main)/FormSignUp";
 import { useState } from "react";
 
@@ -13,7 +13,7 @@ const SignInPage = () => {
       </div>
       <div className="flex flex-col items-center justify-center">
         {isLogin ? (
-          <FormSignIn setIsLogIn={setIsLogIn} />
+          <FormLogIn setIsLogIn={setIsLogIn} />
         ) : (
           <FormSignUp setIsLogIn={setIsLogIn} />
         )}

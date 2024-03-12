@@ -1,17 +1,16 @@
-// import { useForm } from "react-hook-form";
-import { Button } from "@/components/button";
-import { FC } from "react";
+import Button from "@components/ui/Button";
+import PropTypes from "prop-types";
 
-type FormSignUpProp = {
-  setIsLogIn: (prev: (prev: boolean) => boolean) => void;
-};
-
-const FormSignUp: FC<FormSignUpProp> = ({ setIsLogIn }) => {
+const FormSignUp = ({ setIsLogIn }) => {
   return (
     <>
       <div className="flex flex-col items-center mb-10">
         <div className="mb-5">
-          <img src="/auth/app_favicon.png" alt="logo" className="w-11 h-11" />
+          <img
+            src="/auth_assets/app_favicon.png"
+            alt="logo"
+            className="w-11 h-11"
+          />
         </div>
         <p className="font-bold text-3xl">Create an account</p>
         <p className="text-gray-400 text-sm">
@@ -47,7 +46,7 @@ const FormSignUp: FC<FormSignUpProp> = ({ setIsLogIn }) => {
             name="accType"
             id="accountType"
             required
-            className="mt-2 pl-5 pr-7 py-3 bg-transparent border-gray-300 border-2 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700"
+            className="mt-2 mb-5 pl-5 pr-7 py-3 bg-transparent border-gray-300 border-2 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700"
           >
             <option value="student">Staff</option>
             <option value="admin">Admin</option>
@@ -71,5 +70,7 @@ const FormSignUp: FC<FormSignUpProp> = ({ setIsLogIn }) => {
     </>
   );
 };
-
+FormSignUp.propTypes = {
+  setIsLogIn: PropTypes.func.isRequired,
+};
 export default FormSignUp;

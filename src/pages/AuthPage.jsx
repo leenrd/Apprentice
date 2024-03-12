@@ -1,13 +1,13 @@
-import FormLogIn from "../auth/(main)/FormLogIn";
-import FormSignUp from "../auth/(main)/FormSignUp";
 import { useState } from "react";
+import FormLogIn from "@components/(auth)/FormLogIn";
+import FormSignUp from "@components/(auth)/FormSignUp";
 
-const SignInPage = () => {
+const AuthPage = () => {
   const [isLogin, setIsLogIn] = useState(true);
 
   return (
     <div className="h-screen grid grid-cols-2">
-      <div className="bg-[url('/auth/sp_bg.png')] bg-center bg-cover flex flex-col items-start justify-between p-6">
+      <div className="bg-[url('/auth_assets/sp_bg.png')] bg-center bg-cover flex flex-col items-start justify-between p-6">
         <CreatorPill />
         <p className="text-white ">2023 Apprentice. | All rights reserved.</p>
       </div>
@@ -30,4 +30,4 @@ const CreatorPill = () => {
   );
 };
 
-export default SignInPage;
+export default AuthPage;

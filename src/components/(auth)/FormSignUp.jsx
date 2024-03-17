@@ -1,7 +1,7 @@
 import Button from "@components/ui/Button";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const FormSignUp = ({ setIsLogIn }) => {
+const FormSignUp = () => {
   return (
     <>
       <div className="flex flex-col items-center mb-10">
@@ -57,12 +57,9 @@ const FormSignUp = ({ setIsLogIn }) => {
           <div className="flex justify-center w-[100%]">
             <p className="text-xs text-gray-600 mt-4 text-center">
               Already have an account?
-              <a
-                className="underline cursor-pointer ml-1"
-                onClick={() => setIsLogIn((prev) => !prev)}
-              >
+              <Link to="/auth" className="underline cursor-pointer ml-1">
                 Log in
-              </a>
+              </Link>
             </p>
           </div>
         </div>
@@ -70,7 +67,5 @@ const FormSignUp = ({ setIsLogIn }) => {
     </>
   );
 };
-FormSignUp.propTypes = {
-  setIsLogIn: PropTypes.func.isRequired,
-};
+
 export default FormSignUp;

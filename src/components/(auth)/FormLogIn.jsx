@@ -2,10 +2,11 @@ import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { PropTypes } from "prop-types";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import Modal from "@/components/ui/Modal-portal";
 import Button from "../ui/Button";
 
-const FormSignIn = ({ setIsLogIn }) => {
+const FormLogIn = () => {
   const [TestAccountModal, setTestAccountModal] = useState(false);
 
   return (
@@ -32,9 +33,12 @@ const FormSignIn = ({ setIsLogIn }) => {
         <p className="text-sm text-gray-500 mb-2">
           Don&apos;t have an account?
         </p>
-        <Button variant="outline" onClick={() => setIsLogIn((prev) => !prev)}>
+        <Link
+          to="signup"
+          className="font-semibold text-center px-6 py-3 w-[100%] rounded-md text-sm bg-transparent active:scale-95 text-gray-600 border-2 border-gray-300"
+        >
           Create account
-        </Button>
+        </Link>
         {TestAccountModal ? (
           <Modal>
             <div>
@@ -49,11 +53,7 @@ const FormSignIn = ({ setIsLogIn }) => {
   );
 };
 
-FormSignIn.propTypes = {
-  setIsLogIn: PropTypes.func.isRequired,
-};
-
-export default FormSignIn;
+export default FormLogIn;
 
 const Form = () => {
   const { register, handleSubmit } = useForm();

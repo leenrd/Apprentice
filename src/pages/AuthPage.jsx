@@ -1,10 +1,6 @@
-import { useState } from "react";
-import FormLogIn from "@components/(auth)/FormLogIn";
-import FormSignUp from "@components/(auth)/FormSignUp";
+import { Outlet } from "react-router-dom";
 
 const AuthPage = () => {
-  const [isLogin, setIsLogIn] = useState(true);
-
   return (
     <div className="h-screen grid grid-cols-2">
       <div className="bg-[url('/auth_assets/sp_bg.png')] bg-center bg-cover flex flex-col items-start justify-between p-6">
@@ -12,11 +8,7 @@ const AuthPage = () => {
         <p className="text-white ">2023 Apprentice. | All rights reserved.</p>
       </div>
       <div className="flex flex-col items-center justify-center">
-        {isLogin ? (
-          <FormLogIn setIsLogIn={setIsLogIn} />
-        ) : (
-          <FormSignUp setIsLogIn={setIsLogIn} />
-        )}
+        <Outlet />
       </div>
     </div>
   );

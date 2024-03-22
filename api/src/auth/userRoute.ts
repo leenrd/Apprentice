@@ -1,6 +1,12 @@
 import express, { Request, Response } from "express";
 import { check, validationResult } from "express-validator";
-import UserModel from "@/models/userModel";
+import User from "../models/userModel";
+import {
+  bakeCookies,
+  createJWT,
+  errorValidator,
+  hashPassword,
+} from "./userUtils";
 
 const router = express.Router();
 
@@ -12,10 +18,28 @@ const VALIDATORS = [
   }),
 ];
 
-router.post("signup", VALIDATORS, (req: Request, res: Response) => {
-  const errors = validationResult(req);
+router.post("/signup", VALIDATORS, async (req: Request, res: Response) => {
+  errorValidator(req, res);
 
-  if (errors) {
-    return res.status(401).send({ error: errors.array() });
+  try {
+    let user = await User.findOne({
+      username: req.body.username,
+    });
+
+    if (user) {
+      return res.status(401).send({ msg: "Username already exists" });
+    }
+
+    user = new User({
+      ...req.body,
+      password: await hashPassword(req.body.password),
+    });
+
+    const token = createJWT(user);
+    bakeCookies(res, token);
+  } catch (error) {
+    res.status(401).send({ error: error });
   }
 });
+
+export default router;

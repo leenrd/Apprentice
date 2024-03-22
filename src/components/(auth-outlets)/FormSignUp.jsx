@@ -1,5 +1,5 @@
-import Button from "@components/ui/Button";
 import { Link } from "react-router-dom";
+import { TextInput, Select, SelectItem, Button } from "@tremor/react";
 
 const FormSignUp = () => {
   return (
@@ -20,38 +20,32 @@ const FormSignUp = () => {
       <form className="flex flex-col gap-2 items-center w-[45%]">
         <div className="w-[100%]">
           <label className="text-sm font-normal">User Information</label>
-          <input
+          <TextInput
             type="text"
-            className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700 mt-2"
+            className="pl-4 pr-6 py-1 mt-2"
             placeholder="Username"
             required
           />
         </div>
-        <input
+        <TextInput
           type="password"
-          className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700"
+          className="pl-4 pr-6 py-1"
           placeholder="Password"
           required
-          autoComplete="new-password"
         />
-        <input
+        <TextInput
           type="password"
-          className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700 mb-8"
+          className="pl-4 pr-6 py-1 mb-8"
           placeholder="Confirm password"
           required
         />
         <div className="w-[100%] flex flex-col items-start">
-          <label className="text-sm font-normal">Account Type</label>
-          <select
-            name="accType"
-            id="accountType"
-            required
-            className="mt-2 mb-5 pl-5 pr-7 py-3 bg-transparent border-gray-300 border-2 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700"
-          >
-            <option value="student">Staff</option>
-            <option value="admin">Admin</option>
-          </select>
-          <Button variant={"long"} className="mt-3">
+          <label className="text-sm font-normal mb-2">Account Type</label>
+          <Select defaultValue="1" className="mb-5">
+            <SelectItem value="1">Staff</SelectItem>
+            <SelectItem value="2">Admin</SelectItem>
+          </Select>
+          <Button variant="primary" className="mt-3 w-[100%] font-bold">
             Sign up
           </Button>
           <div className="flex justify-center w-[100%]">

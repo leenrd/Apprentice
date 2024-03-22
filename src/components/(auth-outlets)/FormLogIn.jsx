@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 import Modal from "@/components/ui/Modal-portal";
-import Button from "../ui/Button";
+import { Button, TextInput } from "@tremor/react";
 
 const FormLogIn = () => {
   const [TestAccountModal, setTestAccountModal] = useState(false);
@@ -23,7 +23,8 @@ const FormLogIn = () => {
       <div className="flex flex-col items-center w-[45%]">
         <Form />
         <Button
-          variant="link"
+          variant="light"
+          className="hover:underline w-[100%]"
           onClick={() => setTestAccountModal((prev) => !prev)}
         >
           Use test account?
@@ -70,26 +71,25 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        type="text"
-        className="pl-5 pr-7 py-3 mb-2 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-600"
+    <form onSubmit={handleSubmit(onSubmit)} className="w-[100%]">
+      <TextInput
         placeholder="Username"
+        type="text"
+        className="pl-4 pr-6 py-1 mb-2"
         name="username"
         value={user.username}
         onChange={handleChange}
         required
         {...register("username")}
       />
-      <input
+      <TextInput
         type="password"
-        className="pl-5 pr-7 py-3 bg-gray-100 rounded-[5px] focus:ring text-sm w-[100%] focus:outline-none focus:border-orange-700 mb-8"
+        className="pl-4 pr-6 py-1 mb-8"
         placeholder="Password"
         value={user.password}
         name="password"
         onChange={handleChange}
         required
-        autoComplete="new-password"
         {...register("password")}
       />
       <input

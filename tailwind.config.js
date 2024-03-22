@@ -2,6 +2,7 @@
 import colors from "tailwindcss/colors";
 
 export default {
+  darkMode: "class",
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -20,10 +21,10 @@ export default {
         // light mode
         tremor: {
           brand: {
-            faint: colors.orange[50],
+            faint: "#F9BD9C",
             muted: colors.orange[200],
             subtle: colors.orange[400],
-            DEFAULT: colors.orange[500],
+            DEFAULT: colors.orange[600],
             emphasis: colors.orange[700],
             inverted: colors.white,
           },
@@ -93,8 +94,8 @@ export default {
           "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
       },
       borderRadius: {
-        "tremor-small": "0.375rem",
-        "tremor-default": "0.5rem",
+        "tremor-small": "0.1rem",
+        "tremor-default": "0.375rem",
         "tremor-full": "9999px",
       },
       fontSize: {

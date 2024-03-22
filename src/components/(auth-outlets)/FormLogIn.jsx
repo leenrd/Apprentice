@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { PropTypes } from "prop-types";
-import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Modal from "@/components/ui/Modal-portal";
 import Button from "../ui/Button";
@@ -114,7 +113,7 @@ const TestAccModal = ({ onClose }) => {
           <div className="flex gap-3 items-center mt-36">
             <div className="w-4 h-4 bg-orange-600 rounded-full "></div>
             <h2 className="font-bold text-xl mb-1">Staff</h2>
-            <ArrowRight />
+            {/* <ArrowRight /> */}
           </div>
           <p className="text-slate-500 w-52">
             Access to stocks & staff, warehouse, and management.
@@ -124,7 +123,7 @@ const TestAccModal = ({ onClose }) => {
           <div className="flex gap-3 items-center mt-36">
             <div className="w-4 h-4 bg-orange-600 rounded-full "></div>
             <h2 className="font-bold text-xl mb-1">Admin</h2>
-            <ArrowRight />
+            {/* <ArrowRight /> */}
           </div>
           <p className="text-slate-500 w-52">
             Access to users: stocks & staff, warehouse, and arrays of items.

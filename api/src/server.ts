@@ -11,7 +11,7 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 server.get("/", (req: Request, res: Response) => {
-  res.status(200).send({ msg: "connected to express" });
+  res.status(200).send({ msg: "server started" });
 });
 
 server.use("/user", userRoute);

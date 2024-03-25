@@ -19,21 +19,11 @@ Optimized Inventory Management:
     - Implement inventory forecasting techniques to anticipate demand and adjust stock levels accordingly.
     - Set reorder points to ensure timely replenishment and avoid excessive inventory holding costs.
     - Analyze inventory data to identify and optimize product placement, and reduce shrinkage (loss of stock due to various factors).
-
-Increased Profitability:
-
     - Reduce costs associated with overstocking, understocking, and obsolescence (expired or outdated products).
-    - Improve order fulfillment accuracy and customer satisfaction.
-    - Gain valuable insights for informed decision-making regarding product offerings, purchasing strategies, and price optimization.
-
-Improved Efficiency and Productivity:
-
-    - Automate manual tasks like order processing, and reporting.
-    - Streamline warehouse operations through features like pick-and-pack functionality.
 
 > [!Note]
 >
-> Features or tech stack is subject to change.
+> Features under development.
 
 ### Tech Stack
 

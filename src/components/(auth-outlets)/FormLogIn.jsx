@@ -1,12 +1,14 @@
-import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 import Modal from "@/components/ui/Modal-portal";
 import { Button, TextInput } from "@tremor/react";
+import useToggle from "@/hooks/useToggle";
+import * as y from "yup";
 
 const FormLogIn = () => {
-  const [TestAccountModal, setTestAccountModal] = useState(false);
+  const [value, setToggle] = useToggle(false);
 
   return (
     <>
@@ -25,7 +27,7 @@ const FormLogIn = () => {
         <Button
           variant="light"
           className="hover:underline w-[100%]"
-          onClick={() => setTestAccountModal((prev) => !prev)}
+          onClick={setToggle}
         >
           Use test account?
         </Button>
@@ -39,12 +41,10 @@ const FormLogIn = () => {
         >
           Create account
         </Link>
-        {TestAccountModal ? (
+        {value ? (
           <Modal>
             <div>
-              <TestAccModal
-                onClose={() => setTestAccountModal((prev) => !prev)}
-              />
+              <TestAccModal onClose={setToggle} />
             </div>
           </Modal>
         ) : null}
@@ -56,47 +56,61 @@ const FormLogIn = () => {
 export default FormLogIn;
 
 const Form = () => {
-  const { register, handleSubmit } = useForm();
-  const [user, setUser] = useState({ username: "", password: "" });
+  const loginSchema = y.object().shape({
+    username: y.string().required().min(3, "Invalid username"),
+    password: y.string().required().min(8, "Must be at least 8 characters"),
+  });
 
-  const handleChange = useCallback(
-    (e) => {
-      setUser((prevUser) => ({ ...prevUser, [e.target.name]: e.target.value }));
-    },
-    [setUser]
-  );
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+    await new Promise((thing) => setTimeout(thing, 3000));
+    reset();
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-[100%]">
-      <TextInput
-        placeholder="Username"
-        type="text"
-        className="pl-4 pr-6 py-1 mb-2"
-        name="username"
-        value={user.username}
-        onChange={handleChange}
-        required
-        {...register("username")}
-      />
-      <TextInput
-        type="password"
-        className="pl-4 pr-6 py-1 mb-8"
-        placeholder="Password"
-        value={user.password}
-        name="password"
-        onChange={handleChange}
-        required
-        {...register("password")}
-      />
-      <input
+      <div className=" mb-2">
+        <TextInput
+          placeholder="Username"
+          type="text"
+          className="pl-4 pr-6 py-1"
+          {...register("username")}
+        />
+        {errors.username ? (
+          <p className="text-red-500 text-xs">Invalid username</p>
+        ) : null}
+      </div>
+      <div className=" mb-8">
+        <TextInput
+          type="password"
+          className="pl-4 pr-6 py-1"
+          placeholder="Password"
+          {...register("password")}
+        />
+        {errors.password ? (
+          <p className="text-red-500 text-xs">{`${
+            errors.password.message.charAt(0).toUpperCase() +
+            errors.password.message.slice(1)
+          }`}</p>
+        ) : null}
+      </div>
+
+      <button
         type="submit"
-        className="cursor-pointer font-semibold rounded-md text-sm active:scale-95 text-white px-6 py-2 w-[100%] bg-orange-600 hover:bg-orange-700 mb-2"
-        value="Log in"
-      />
+        className="cursor-pointer font-semibold rounded-md text-sm active:scale-95 disabled:opacity-80 disabled:cursor-not-allowed text-white px-6 py-2 w-[100%] bg-orange-600 hover:bg-orange-700 mb-2"
+        disabled={isSubmitting}
+      >
+        Log in
+      </button>
     </form>
   );
 };
@@ -115,7 +129,7 @@ const TestAccModal = ({ onClose }) => {
             <h2 className="font-bold text-xl mb-1">Staff</h2>
           </div>
           <p className="text-slate-500 w-52">
-            Access to stocks & staff, warehouse, and management.
+            Access to stocks, warehouse, and management.
           </p>
         </div>
         <div className="p-10 flex-col items-start justify-start border-[0.8px] border-slate-200 rounded-md hover:border-orange-600 transition-colors hover:shadow-lg cursor-pointer">
@@ -124,7 +138,7 @@ const TestAccModal = ({ onClose }) => {
             <h2 className="font-bold text-xl mb-1">Admin</h2>
           </div>
           <p className="text-slate-500 w-52">
-            Access to users: stocks & staff, warehouse, and arrays of items.
+            Access to users: Accounts, warehouses, and arrays of management.
           </p>
         </div>
       </div>

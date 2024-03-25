@@ -1,7 +1,33 @@
 import { Link } from "react-router-dom";
 import { TextInput, Select, SelectItem, Button } from "@tremor/react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as y from "yup";
 
 const FormSignUp = () => {
+  const signUpSchema = y.object().shape({
+    username: y.string().required().min(3, "Invalid username"),
+    password: y.string().required().min(8, "Must be at least 8 characters"),
+    confirmPassword: y
+      .string()
+      .required()
+      .oneOf([y.ref("password"), null]),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: yupResolver(signUpSchema),
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
+  };
+
   return (
     <>
       <div className="flex flex-col items-center mb-10">
@@ -17,27 +43,30 @@ const FormSignUp = () => {
           Enter your required info below to create your account.
         </p>
       </div>
-      <form className="flex flex-col gap-2 items-center w-[45%]">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-2 items-center w-[45%]"
+      >
         <div className="w-[100%]">
           <label className="text-sm font-normal">User Information</label>
           <TextInput
             type="text"
             className="pl-4 pr-6 py-1 mt-2"
             placeholder="Username"
-            required
+            {...register("username")}
           />
         </div>
         <TextInput
           type="password"
           className="pl-4 pr-6 py-1"
           placeholder="Password"
-          required
+          {...register("password")}
         />
         <TextInput
           type="password"
           className="pl-4 pr-6 py-1 mb-8"
           placeholder="Confirm password"
-          required
+          {...register("confirmPassword")}
         />
         <div className="w-[100%] flex flex-col items-start">
           <label className="text-sm font-normal mb-2">Account Type</label>

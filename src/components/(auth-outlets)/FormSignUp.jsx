@@ -14,6 +14,7 @@ const FormSignUp = () => {
       .oneOf([y.ref("password"), null]),
   });
 
+  // TODO: error states
   const {
     register,
     handleSubmit,
@@ -49,44 +50,67 @@ const FormSignUp = () => {
       >
         <div className="w-[100%]">
           <label className="text-sm font-normal">User Information</label>
-          <TextInput
-            type="text"
-            className="pl-4 pr-6 py-1 mt-2"
-            placeholder="Username"
-            {...register("username")}
-          />
+          <div>
+            <TextInput
+              type="text"
+              className="pl-4 pr-6 py-1 mt-2"
+              placeholder="Username"
+              {...register("username")}
+            />
+            {errors.username ? (
+              <p className="text-red-500 text-xs">Username is required</p>
+            ) : null}
+          </div>
         </div>
-        <TextInput
-          type="password"
-          className="pl-4 pr-6 py-1"
-          placeholder="Password"
-          {...register("password")}
-        />
-        <TextInput
-          type="password"
-          className="pl-4 pr-6 py-1 mb-8"
-          placeholder="Confirm password"
-          {...register("confirmPassword")}
-        />
+        <div className="w-[100%]">
+          <TextInput
+            type="password"
+            className="pl-4 pr-6 py-1"
+            placeholder="Password"
+            {...register("password")}
+          />
+          {errors.password ? (
+            <p className="text-red-500 text-xs">{`${
+              errors.password.message.charAt(0).toUpperCase() +
+              errors.password.message.slice(1)
+            }`}</p>
+          ) : null}
+        </div>
+        <div className="mb-8 w-[100%]">
+          <TextInput
+            type="password"
+            className="pl-4 pr-6 py-1"
+            placeholder="Confirm password"
+            {...register("confirmPassword")}
+          />
+          {errors.confirmPassword ? (
+            <p className="text-red-500 text-xs">Passwords must match</p>
+          ) : null}
+        </div>
         <div className="w-[100%] flex flex-col items-start">
           <label className="text-sm font-normal mb-2">Account Type</label>
           <Select defaultValue="1" className="mb-5">
             <SelectItem value="1">Staff</SelectItem>
             <SelectItem value="2">Admin</SelectItem>
           </Select>
-          <Button variant="primary" className="mt-3 w-[100%] font-bold">
+          <Button
+            variant="primary"
+            className="mt-3 w-[100%] font-bold disabled:bg-orange-200 disabled:cursor-not-allowed"
+            disabled={isSubmitting}
+            type="submit"
+          >
             Sign up
           </Button>
-          <div className="flex justify-center w-[100%]">
-            <p className="text-xs text-gray-600 mt-4 text-center">
-              Already have an account?
-              <Link to="/auth" className="underline cursor-pointer ml-1">
-                Log in
-              </Link>
-            </p>
-          </div>
         </div>
       </form>
+      <div className="flex justify-center w-[100%]">
+        <p className="text-xs text-gray-600 mt-4 text-center">
+          Already have an account?
+          <Link to="/auth" className="underline cursor-pointer ml-1">
+            Log in
+          </Link>
+        </p>
+      </div>
     </>
   );
 };

@@ -1,11 +1,13 @@
+import RootPage from "@pages/private/admin/RootPage";
+
 const adminRoute = [
   {
     path: "/",
-    element: "placeholder",
+    element: <RootPage />,
     children: [
       {
         index: true,
-        element: "placeholder",
+        element: <h1>Admin Dashboard</h1>,
       },
     ],
   },

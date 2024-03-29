@@ -1,11 +1,13 @@
+import RootPage from "@pages/private/staff/RootPage";
+
 const staffRoute = [
   {
     path: "/",
-    element: "placeholder",
+    element: <RootPage />,
     children: [
       {
         index: true,
-        element: "placeholder",
+        element: <h1>Staff Dashboard</h1>,
       },
     ],
   },

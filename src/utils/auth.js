@@ -5,7 +5,7 @@ export const AccountType = {
 
 const auth = {
   authenticated: false,
-  accountType: AccountType.Staff,
+  accountType: AccountType.Admin,
 };
 
 export default auth;

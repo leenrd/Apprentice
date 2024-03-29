@@ -12,10 +12,10 @@ interface Item {
   quantityPerPurchaseUnit: number;
   costPerPurchaseUnit: number;
   costPerSingleItem: number;
-  unitLoad: string;
+  unitLoad: null | number;
 }
 
-const ItemSchema = new Schema(
+const ItemSchema = new Schema<Item>(
   {
     description: {
       type: String,
@@ -56,6 +56,6 @@ const ItemSchema = new Schema(
   { timestamps: true }
 );
 
-const Item = model("item", ItemSchema);
+const Item = model<Item>("item", ItemSchema);
 
 export default Item;

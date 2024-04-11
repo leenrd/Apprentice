@@ -4,7 +4,8 @@ import { string } from "prop-types";
 interface WarehouseType {
   _id: string;
   name: string;
-  unitLoad: number;
+  unitLoad: string[];
+  capacity: number;
 }
 
 const WarehouseSchema = new Schema<WarehouseType>({
@@ -14,7 +15,7 @@ const WarehouseSchema = new Schema<WarehouseType>({
     index: true,
   },
   unitLoad: {
-    type: Number,
+    type: [String],
     required: true,
     unitClass: {
       type: String,

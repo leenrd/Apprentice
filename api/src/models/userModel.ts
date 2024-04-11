@@ -1,11 +1,11 @@
 import { Schema, model } from "mongoose";
+import Warehouse from "./warehouseModel";
 
 interface User {
   _id: string;
   username: string;
   password: string;
   role: string;
-  warehouse: string | null;
 }
 
 const UserSchema = new Schema<User>(
@@ -22,16 +22,23 @@ const UserSchema = new Schema<User>(
     role: {
       type: String,
       enum: ["admin", "staff"],
-    },
-    warehouse: {
-      type: Schema.Types.ObjectId,
-      ref: "warehouse",
-      default: null,
+      default: "staff",
     },
   },
   { timestamps: true }
 );
 
-const User = model<User>("user", UserSchema);
+const StaffSchema = new Schema(
+  {
+    warehouse: {
+      type: Schema.Types.ObjectId,
+      ref: "warehouse",
+    },
+  },
+  { discriminatorKey: "role" }
+);
 
-export default User;
+const Admin = model<User>("user", UserSchema);
+const Staff = Admin.discriminator("staff", StaffSchema);
+
+export default { Admin, Staff };

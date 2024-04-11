@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import { string } from "prop-types";
 
 interface Item {
   _id: string;
@@ -12,7 +11,7 @@ interface Item {
   quantityPerPurchaseUnit: number;
   costPerPurchaseUnit: number;
   costPerSingleItem: number;
-  unitLoad: null | number;
+  unitLoad: null | string;
 }
 
 const ItemSchema = new Schema<Item>(
@@ -20,15 +19,9 @@ const ItemSchema = new Schema<Item>(
     description: {
       type: String,
       required: true,
-      index: true,
     },
     category: String,
-    itemType: {
-      type: String,
-      hierarchy1: String,
-      hierarchy2: String,
-      hierarchy3: String,
-    },
+    itemType: String,
     vendorName: String,
     shelfLife: Date,
     purchaseUnit: {

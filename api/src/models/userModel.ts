@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import Warehouse from "./warehouseModel";
 
 interface User {
   _id: string;
@@ -8,7 +7,7 @@ interface User {
   role: string;
 }
 
-const UserSchema = new Schema<User>(
+const BaseSchema = new Schema<User>(
   {
     username: {
       type: String,
@@ -38,7 +37,7 @@ const StaffSchema = new Schema(
   { discriminatorKey: "role" }
 );
 
-const Admin = model<User>("user", UserSchema);
+const Admin = model<User>("user", BaseSchema);
 const Staff = Admin.discriminator("staff", StaffSchema);
 
 export default { Admin, Staff };

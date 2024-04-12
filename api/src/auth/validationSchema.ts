@@ -15,4 +15,5 @@ export const SIGNUP_VALIDATORS = [
     min: 8,
     max: 20,
   }),
+  check("role", "Role is required").isIn(["admin", "staff"]),
 ];

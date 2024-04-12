@@ -24,12 +24,20 @@ router.post(
         return res.status(401).send({ msg: "Username already exists" });
       }
 
-      user = new User.Admin({
-        ...req.body,
-        password: await hashPassword(req.body.password),
-      });
+      let newUser;
+      if (req.body.role === "staff") {
+        newUser = new User.Staff({
+          ...req.body,
+          password: await hashPassword(req.body.password),
+        });
+      } else {
+        newUser = new User.Admin({
+          ...req.body,
+          password: await hashPassword(req.body.password),
+        });
+      }
 
-      const token = createJWT(user);
+      const token = createJWT(newUser);
       bakeCookies(res, token);
     } catch (error) {
       res.status(401).send({ error: error });

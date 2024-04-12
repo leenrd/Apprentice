@@ -1,19 +1,12 @@
-import { check } from "express-validator";
+import * as y from "yup";
 
-// change to yup
-export const LOGIN_VALIDATIONS = [
-  check("username", "Username is required").isString(),
-  check("password", "Password should be at least 8 characters").isLength({
-    min: 8,
-    max: 20,
-  }),
-];
+export const LOGIN_SCHEMA = y.object().shape({
+  username: y.string().required(),
+  password: y.string().min(8).max(20).required(),
+});
 
-export const SIGNUP_VALIDATORS = [
-  check("username", "Username is required").isString(),
-  check("password", "Password should be at least 8 characters").isLength({
-    min: 8,
-    max: 20,
-  }),
-  check("role", "Role is required").isIn(["admin", "staff"]),
-];
+export const SIGNUP_SCHEMA = y.object().shape({
+  username: y.string().required(),
+  password: y.string().min(8).max(20).required(),
+  role: y.string().required().oneOf(["admin", "staff"]),
+});

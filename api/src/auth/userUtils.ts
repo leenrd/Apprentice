@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { validationResult } from "express-validator";
 
 export const hashPassword = (password: string) => {
   return bcrypt.hash(password, 10);
@@ -9,13 +8,6 @@ export const hashPassword = (password: string) => {
 
 export const comparePassword = (password: string, hashedFromDb: string) => {
   return bcrypt.compare(password, hashedFromDb);
-};
-
-export const errorValidator = (req: Request, res: Response) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(401).send({ error: errors.array() });
-  }
 };
 
 type User = {

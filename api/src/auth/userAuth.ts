@@ -1,21 +1,16 @@
 import express, { Request, Response } from "express";
-import {
-  bakeCookies,
-  comparePassword,
-  createJWT,
-  errorValidator,
-} from "./userUtils";
-import { LOGIN_VALIDATIONS } from "./validationSchema";
+import { bakeCookies, comparePassword, createJWT } from "./userUtils";
 import User from "@/models/userModel";
+import { LOGIN_VALIDATOR } from "@/middlewares/validations";
+import { LOGIN_SCHEMA } from "./validationSchema";
 
 const router = express.Router();
 
 router.post(
   "/login",
-  LOGIN_VALIDATIONS,
+  LOGIN_VALIDATOR(LOGIN_SCHEMA),
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
-    errorValidator(req, res);
 
     try {
       let user = await User.Admin.findOne({

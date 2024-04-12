@@ -1,21 +1,17 @@
 import express, { Request, Response } from "express";
 import User from "../models/userModel";
-import {
-  bakeCookies,
-  createJWT,
-  errorValidator,
-  hashPassword,
-} from "./userUtils";
-import { SIGNUP_VALIDATORS } from "./validationSchema";
+import { bakeCookies, createJWT, hashPassword } from "./userUtils";
+import { SIGNUP_VALIDATOR } from "../middlewares/validations";
+import { SIGNUP_SCHEMA } from "./validationSchema";
+
 const router = express.Router();
 
 router.post(
   "/signup",
-  SIGNUP_VALIDATORS,
+  SIGNUP_VALIDATOR(SIGNUP_SCHEMA),
   async (req: Request, res: Response) => {
-    errorValidator(req, res);
-
     try {
+      // User.Admin constitutes to base user schema
       let user = await User.Admin.findOne({
         username: req.body.username,
       });

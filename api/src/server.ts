@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import userRoute from "./auth/userRoute";
+import userRoute from "./auth/userRegisterRoute";
 import cors from "cors";
 
 require("dotenv").config();

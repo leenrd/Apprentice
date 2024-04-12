@@ -10,19 +10,20 @@ router.post(
   "/login",
   LOGIN_VALIDATOR(LOGIN_SCHEMA),
   async (req: Request, res: Response) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
     try {
+      // User.Admin constitutes to base user schema
       let user = await User.Admin.findOne({
-        email,
+        username: username,
       });
 
       if (!user) {
         return res.status(401).send({ message: "User not found!" });
       }
 
-      const emailIsValid = await comparePassword(password, user.password);
-      if (!emailIsValid) {
+      const userIsValid = await comparePassword(password, user.password);
+      if (!userIsValid) {
         return res.status(401).send({ message: "Wrong password!" });
       }
 

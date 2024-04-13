@@ -1,10 +1,12 @@
+import Sidebar from "@/components/ui/Sidebar";
 import { Outlet } from "react-router-dom";
 
 const RootPage = () => {
   return (
-    <div>
-      RootPage Admin <Outlet />
-    </div>
+    <main className="flex font-general">
+      <Sidebar />
+      <Outlet />
+    </main>
   );
 };
 

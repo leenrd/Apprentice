@@ -15,7 +15,7 @@ export default {
     current: "currentColor",
     extend: {
       fontFamily: {
-        general: ["General Sans", "sans-serif"],
+        general: ["Poppins", "sans-serif"],
       },
       colors: {
         // light mode

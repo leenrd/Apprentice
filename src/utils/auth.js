@@ -4,7 +4,7 @@ export const AccountType = {
 };
 
 const auth = {
-  authenticated: false,
+  authenticated: true,
   accountType: AccountType.Admin,
 };
 

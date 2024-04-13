@@ -15,11 +15,13 @@
     "@hookform/resolvers": "^3.3.4",
     "@remixicon/react": "^4.2.0",
     "@tremor/react": "^3.14.1",
+    "lucide-react": "^0.368.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.0",
     "react-router-dom": "^6.22.3",
+    "tailwind-merge": "^2.2.2",
     "yup": "^1.4.0"
   },
   "devDependencies": {

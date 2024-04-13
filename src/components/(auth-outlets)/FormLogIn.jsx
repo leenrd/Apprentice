@@ -86,7 +86,7 @@ const Form = () => {
           {...register("username")}
         />
         {errors.username ? (
-          <p className="text-red-500 text-xs">Invalid username</p>
+          <p className="text-red-500 text-xs">Username required</p>
         ) : null}
       </div>
       <div className=" mb-8">

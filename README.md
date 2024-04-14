@@ -21,11 +21,6 @@ Optimized Inventory Management:
     - Analyze inventory data to identify and optimize product placement, and reduce shrinkage (loss of stock due to various factors).
     - Reduce costs associated with overstocking, understocking, and obsolescence (expired or outdated products).
 
-### Tech Stack
-
-**Client:** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Server:** <br />
-![](https://skillicons.dev/icons?i=react,tailwind) &nbsp;&nbsp; ![](https://skillicons.dev/icons?i=typescript,nodejs,express,mongodb)
-
 ## Screenshots
 
 ![SignIn](https://github.com/leenrd/Apprentice/assets/103997539/cd993aa3-aa38-4658-a469-dcfe71be7e68)

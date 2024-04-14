@@ -1,5 +1,5 @@
 const Users = () => {
-  return <div>Users</div>;
+  return <article className="w-full">Reports</article>;
 };
 
 export default Users;

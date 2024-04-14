@@ -1,5 +1,5 @@
 const Warehouse = () => {
-  return <div>Warehouse</div>;
+  return <article className="w-full">Reports</article>;
 };
 
 export default Warehouse;

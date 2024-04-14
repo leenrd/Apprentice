@@ -47,7 +47,7 @@ const CardItem = ({ title, value, Icon }) => {
         <h3 className="text-tremor-content">{title}</h3>
       </span>
       <div>
-        <h1 className="text-6xl font-medium">{value}</h1>
+        <h1 className="text-4xl font-medium">{value}</h1>
       </div>
     </Card>
   );

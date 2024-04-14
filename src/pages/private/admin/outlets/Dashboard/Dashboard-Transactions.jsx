@@ -28,8 +28,8 @@ const cardObj = [
 
 const DashboardTransactions = () => {
   return (
-    <div>
-      <h1 className="font-semibold text-xl mb-2">Total Transactions</h1>
+    <div className="mb-14">
+      <h1 className="font-semibold text-xl mb-2">Real-time Transactions</h1>
       <div className="flex gap-3">
         {cardObj.map((card, index) => (
           <CardItem key={index} {...card} />

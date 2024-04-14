@@ -34,8 +34,14 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "husky": "^9.0.11",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.1",
     "vite": "^5.1.4"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "sh commit-msg.sh $HUSKY_GIT_PARAMS"
+    }
   }
 }

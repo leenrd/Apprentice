@@ -36,14 +36,16 @@ const Sidebar = () => {
 
 const Tab = ({ label, Icon, to }) => {
   const defaultStyle = `rounded-md font-medium active:scale-95 text-black py-2 px-3
-  hover:bg-slate-50 active:text-semibold w-[100%] text-start flex items-center gap-2
+  hover:bg-slate-100 active:text-semibold w-[100%] text-start flex items-center gap-2
   transition-transform duration-100 mb-1`;
   return (
     <NavLink
       to={to}
       type="button"
       className={({ isActive }) =>
-        isActive ? cn(defaultStyle, "bg-gray-100") : defaultStyle
+        isActive
+          ? cn(defaultStyle, "bg-gray-200 hover:bg-gray-300")
+          : defaultStyle
       }
     >
       <Icon className="w-5 h-5 font" />

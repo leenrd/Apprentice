@@ -86,7 +86,7 @@ const Form = () => {
           {...register("username")}
         />
         {errors.username ? (
-          <p className="text-red-500 text-xs">Username required</p>
+          <p className="text-red-500 text-xs">Username is required</p>
         ) : null}
       </div>
       <div className=" mb-8">
@@ -106,7 +106,7 @@ const Form = () => {
 
       <button
         type="submit"
-        className="cursor-pointer font-semibold rounded-md text-sm active:scale-95 disabled:opacity-80 disabled:cursor-not-allowed text-white px-6 py-2 w-[100%] bg-orange-600 hover:bg-orange-700 mb-2"
+        className="cursor-pointer font-semibold rounded-md text-sm active:scale-95 disabled:opacity-80 disabled:cursor-not-allowed text-white px-6 py-2 w-[100%] bg-tremor-brand hover:bg-tremor-brand-emphasis mb-2"
         disabled={isSubmitting}
       >
         Log in
@@ -125,16 +125,16 @@ const TestAccModal = ({ onClose }) => {
       <div className="p-5 z-50 bg-white rounded-md absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-5">
         <div className="p-10 flex-col items-start justify-start border-[0.8px] border-slate-200 rounded-md  hover:border-orange-600 transition-colors hover:shadow-lg cursor-pointer">
           <div className="flex gap-3 items-center mt-36">
-            <div className="w-4 h-4 bg-orange-600 rounded-full "></div>
+            <div className="w-4 h-4 bg-tremor-brand rounded-full "></div>
             <h2 className="font-bold text-xl mb-1">Staff</h2>
           </div>
           <p className="text-slate-500 w-52">
             Access to stocks, warehouse, and management.
           </p>
         </div>
-        <div className="p-10 flex-col items-start justify-start border-[0.8px] border-slate-200 rounded-md hover:border-orange-600 transition-colors hover:shadow-lg cursor-pointer">
+        <div className="p-10 flex-col items-start justify-start border-[0.8px] border-slate-200 rounded-md hover:border-tremor-bg-tremor-brand transition-colors hover:shadow-lg cursor-pointer">
           <div className="flex gap-3 items-center mt-36">
-            <div className="w-4 h-4 bg-orange-600 rounded-full "></div>
+            <div className="w-4 h-4 bg-tremor-brand rounded-full "></div>
             <h2 className="font-bold text-xl mb-1">Admin</h2>
           </div>
           <p className="text-slate-500 w-52">

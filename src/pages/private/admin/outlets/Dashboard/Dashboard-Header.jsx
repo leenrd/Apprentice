@@ -6,7 +6,7 @@ const DashboardHeader = () => {
   return (
     <div className="border-b-slate border-b-2 px-9 py-[0.7rem] flex items-center justify-between">
       <div>
-        <h1 className="text-lg font-bold">Inventory Overview</h1>
+        <h1 className="text-lg font-medium">Inventory Overview</h1>
         <span className="text-sm text-tremor-content">
           Manage inventory and generate updates.
         </span>

@@ -10,7 +10,7 @@ const RootPage = () => {
   return (
     <>
       {!value ? <Banner toggle={setToggle} /> : null}
-      <main className="flex font-general">
+      <main className="flex font-general tracking-tight">
         <Sidebar />
         <Outlet />
       </main>

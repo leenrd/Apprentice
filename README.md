@@ -17,7 +17,6 @@ Enhanced Visibility and Control:
 Optimized Inventory Management:
 
     - Implement inventory forecasting techniques to anticipate demand and adjust stock levels accordingly.
-    - Set reorder points to ensure timely replenishment and avoid excessive inventory holding costs.
     - Analyze inventory data to identify and optimize product placement, and reduce shrinkage (loss of stock due to various factors).
     - Reduce costs associated with overstocking, understocking, and obsolescence (expired or outdated products).
 

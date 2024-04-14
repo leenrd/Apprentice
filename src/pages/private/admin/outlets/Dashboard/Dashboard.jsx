@@ -2,7 +2,15 @@ import OutletWidthShell from "@/components/ui/shared/OutletWidthShell";
 import DashboardHeader from "./Dashboard-Header";
 import DashboardTransactions from "./Dashboard-Transactions";
 import { useState } from "react";
-import { Card, DonutChart, Legend, Tracker } from "@tremor/react";
+import {
+  Card,
+  DonutChart,
+  Legend,
+  Tracker,
+  List,
+  ListItem,
+  Divider,
+} from "@tremor/react";
 
 const Dashboard = () => {
   return (
@@ -13,15 +21,57 @@ const Dashboard = () => {
         <div className="flex gap-3 items-start w-full">
           <WarehouseOverview />
           <TotalResources />
-          <div className="flex-1">
-            <h1 className="font-bold text-md md:text-lg lg:text-xl mb-2">
-              Recent Activity
-            </h1>
-            <Card className="p-5">card</Card>
-          </div>
+          <RecentActivity />
         </div>
       </OutletWidthShell>
     </article>
+  );
+};
+
+const RecentActivity = () => {
+  return (
+    <div className="flex-1">
+      <h1 className="font-bold text-md md:text-lg lg:text-xl mb-2">
+        Recent Activity
+      </h1>
+      <Card className="p-5">
+        <div className="flex justify-between items-center">
+          <h1>Latest </h1>
+          <p className="text-tremor-content-emphasis">Writes and Queries </p>
+        </div>
+        <Divider className="my-3"></Divider>
+        <List>
+          <ListItem>
+            <div className="w-4 h-4 bg-tremor-brand rounded-full"></div>
+            <span>Roger Federer</span> <span>Write</span>
+          </ListItem>
+          <ListItem>
+            <div className="w-4 h-4 bg-tremor-brand rounded-full"></div>
+            <span>Rafel Nadal</span> <span>Write</span>
+          </ListItem>
+          <ListItem>
+            <div className="w-4 h-4 bg-tremor-brand rounded-full"></div>
+            <span>Novak Djokovic</span> <span>Delete</span>
+          </ListItem>
+          <ListItem>
+            <div className="w-4 h-4 bg-tremor-brand rounded-full"></div>
+            <span>Andy Murray</span> <span>Update</span>
+          </ListItem>
+          <ListItem>
+            <div className="w-4 h-4 bg-tremor-brand rounded-full"></div>
+            <span>Andy Murray</span> <span>Update</span>
+          </ListItem>
+          <ListItem>
+            <div className="w-4 h-4 bg-tremor-brand rounded-full"></div>
+            <span>Andy Murray</span> <span>Update</span>
+          </ListItem>
+          <ListItem>
+            <div className="w-4 h-4 bg-tremor-brand rounded-full"></div>
+            <span>Andy Murray</span> <span>Update</span>
+          </ListItem>
+        </List>
+      </Card>
+    </div>
   );
 };
 

@@ -21,7 +21,7 @@ export default {
         // light mode
         tremor: {
           brand: {
-            faint: "#F9BD9C",
+            faint: "#fef2f2",
             muted: colors.orange[200],
             subtle: colors.orange[400],
             DEFAULT: colors.orange[600],

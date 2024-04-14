@@ -1,11 +1,15 @@
 import Sidebar from "@/components/ui/Sidebar";
 import { Outlet } from "react-router-dom";
 import redirectToSite from "@/utils/redirects";
+import useToggle from "@/hooks/useToggle";
+import PropTypes from "prop-types";
+import { X } from "lucide-react";
 
 const RootPage = () => {
+  const [value, setToggle] = useToggle(true);
   return (
     <>
-      <Banner />
+      {!value ? <Banner toggle={setToggle} /> : null}
       <main className="flex font-general">
         <Sidebar />
         <Outlet />
@@ -14,7 +18,7 @@ const RootPage = () => {
   );
 };
 
-const Banner = () => {
+const Banner = ({ toggle }) => {
   return (
     <div className=" grid grid-cols-3 border-r-slate border-b-2 w-screen">
       <h1 className="font-semibold text-sm text-black py-2 px-8">
@@ -30,8 +34,15 @@ const Banner = () => {
         </span>
         .
       </h1>
-      <span></span>
+      <span className="flex justify-end items-center px-8">
+        <X className="h-4 w-4 cursor-pointer" onClick={() => toggle()} />
+      </span>
     </div>
   );
 };
+
+Banner.propTypes = {
+  toggle: PropTypes.func.isRequired,
+};
+
 export default RootPage;

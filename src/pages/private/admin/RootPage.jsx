@@ -1,4 +1,4 @@
-import Sidebar from "@/components/ui/Sidebar";
+import Sidebar from "@/components/ui/shared/Sidebar";
 import { Outlet } from "react-router-dom";
 import redirectToSite from "@/utils/redirects";
 import useToggle from "@/hooks/useToggle";

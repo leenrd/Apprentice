@@ -1,4 +1,4 @@
-import Dashboard from "@/pages/private/admin/outlets/Dashboard";
+import Dashboard from "@/pages/private/admin/outlets/Dashboard/Dashboard";
 import Logs from "@/pages/private/admin/outlets/Logs";
 import Users from "@/pages/private/admin/outlets/Users";
 import Settings from "@/pages/private/admin/Settings";

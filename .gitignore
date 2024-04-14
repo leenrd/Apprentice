@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 .husky
-.demo
 
 # Editor directories and files
 .vscode/*

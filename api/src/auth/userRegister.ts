@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import User from "../models/userModel";
+import ApiResponse, { HTTP_STATUS } from "../utils/responseHandler";
 import { bakeCookies, createJWT, hashPassword } from "./userUtils";
 import { SIGNUP_VALIDATOR } from "../middlewares/validations";
 import { SIGNUP_SCHEMA } from "./validationSchema";
@@ -16,9 +17,11 @@ router.post(
         username: req.body.username,
       });
 
-      if (user) {
-        return res.status(401).send({ msg: "Username already exists" });
-      }
+      if (user)
+        return new ApiResponse(res).error(
+          HTTP_STATUS.BAD_REQUEST,
+          "User already exists"
+        );
 
       let newUser;
       if (req.body.role === "staff") {
@@ -35,8 +38,13 @@ router.post(
 
       const token = createJWT(newUser);
       bakeCookies(res, token);
-    } catch (error) {
-      res.status(401).send({ error: error });
+
+      return new ApiResponse(res).send({ userId: newUser._id });
+    } catch (error: any) {
+      return new ApiResponse(res).error(
+        HTTP_STATUS.INTERNAL_SERVER_ERROR,
+        error.message
+      );
     }
   }
 );

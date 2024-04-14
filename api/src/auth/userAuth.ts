@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { bakeCookies, comparePassword, createJWT } from "./userUtils";
 import User from "@/models/userModel";
+import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
 import { LOGIN_VALIDATOR } from "@/middlewares/validations";
 import { LOGIN_SCHEMA } from "./validationSchema";
 
@@ -18,21 +19,28 @@ router.post(
         username: username,
       });
 
-      if (!user) {
-        return res.status(401).send({ message: "User not found!" });
-      }
+      if (!user)
+        return new ApiResponse(res).error(
+          HTTP_STATUS.NOT_FOUND,
+          "User not found"
+        );
 
       const userIsValid = await comparePassword(password, user.password);
-      if (!userIsValid) {
-        return res.status(401).send({ message: "Wrong password!" });
-      }
+      if (!userIsValid)
+        return new ApiResponse(res).error(
+          HTTP_STATUS.UNAUTHORIZED,
+          "Invalid password"
+        );
 
       const token = createJWT(user);
       bakeCookies(res, token);
 
-      res.status(200).json({ userId: user._id });
-    } catch (error) {
-      res.status(400).send({ error: error });
+      return new ApiResponse(res).send({ userId: user._id });
+    } catch (error: any) {
+      return new ApiResponse(res).error(
+        HTTP_STATUS.INTERNAL_SERVER_ERROR,
+        error.message
+      );
     }
   }
 );

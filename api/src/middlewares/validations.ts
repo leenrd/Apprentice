@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
 import * as y from "yup";
 
 export const SIGNUP_VALIDATOR =
@@ -7,8 +8,9 @@ export const SIGNUP_VALIDATOR =
     try {
       await schema.validate(req.body);
       return next();
-    } catch (error) {
-      return res.status(400).send({ error: error });
+    } catch (error: any) {
+      const response = new ApiResponse(res);
+      response.error(HTTP_STATUS.BAD_REQUEST, error.message);
     }
   };
 
@@ -18,7 +20,8 @@ export const LOGIN_VALIDATOR =
     try {
       await schema.validate(req.body);
       return next();
-    } catch (error) {
-      return res.status(400).send({ error: error });
+    } catch (error: any) {
+      const response = new ApiResponse(res);
+      response.error(HTTP_STATUS.BAD_REQUEST, error.message);
     }
   };

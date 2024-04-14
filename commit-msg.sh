@@ -1,7 +1,4 @@
 #!/bin/sh
-echo "Checking commit message..."
-echo "Git Hook Triggered: commit-msg should be formatted as 'type: message' and not exceed 88 characters."
-echo "git message example: 'feat: add new feature', choose a type from: feat|fix|chore|docs|test|style|refactor|perf|build|ci|revert|enhancement"
 if [ ! -f "$1" ]; then
     echo "Aborting commit. No commit message provided." >&2
     exit 1

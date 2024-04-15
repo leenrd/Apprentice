@@ -23,7 +23,7 @@ const OutletHeader = ({ title, subText, type }) => {
 const SearchBar = () => {
   return (
     <>
-      <TextInput icon={RiSearchLine} placeholder="Search... or press ctrl+K" />{" "}
+      <TextInput icon={RiSearchLine} placeholder="Search or Press Ctrl+K" />{" "}
       <Button>
         <PackagePlus className="h-5 w-5" />
       </Button>

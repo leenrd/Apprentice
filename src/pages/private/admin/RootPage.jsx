@@ -4,12 +4,14 @@ import redirectToSite from "@/utils/redirects";
 import useToggle from "@/hooks/useToggle";
 import PropTypes from "prop-types";
 import { X } from "lucide-react";
+import CommandMenu from "@/components/ui/CommandMenu";
 
 const RootPage = () => {
   const [value, setToggle] = useToggle(true);
 
   return (
     <div className="relative">
+      <CommandMenu />
       {!value ? <Banner toggle={setToggle} /> : null}
       <main className="flex font-general tracking-tight">
         <Sidebar />
@@ -21,7 +23,7 @@ const RootPage = () => {
 
 const Banner = ({ toggle }) => {
   return (
-    <div className=" grid grid-cols-3 w-screen z-[60] bg-tremor-brand sticky top-0">
+    <div className=" grid grid-cols-3 z-[60] bg-tremor-brand sticky top-0">
       <h1 className="font-semibold text-sm text-white py-2 px-8">
         Apprentice Admin
       </h1>

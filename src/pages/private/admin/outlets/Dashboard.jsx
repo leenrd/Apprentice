@@ -1,6 +1,6 @@
 import OutletWidthShell from "@/components/ui/shared/OutletWidthShell";
 import OutletHeader from "@/components/ui/shared/OutletHeader";
-import DashboardTransactions from "@/features/admin/Dashboard-Transactions";
+import DashboardTransactions from "@/features/admin/RealTimeTransactions";
 import { useState } from "react";
 import {
   Card,

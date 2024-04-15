@@ -11,25 +11,29 @@ import {
   ListItem,
   Divider,
 } from "@tremor/react";
+import OutletFooter from "@/components/ui/shared/OutletFooter";
 
 const Dashboard = () => {
   return (
-    <article className="w-full">
+    <article className="w-full flex flex-col min-h-screen justify-between">
       <OutletHeader
         title={"Inventory Management"}
         subText={"Manage inventory and generate updates."}
       />
       <OutletWidthShell>
         <DashboardTransactions />
-        <div className="flex gap-3 items-start w-full">
+        <div className="flex gap-3 items-start w-full mb-48">
           <WarehouseOverview />
           <TotalResources />
           <RecentActivity />
         </div>
       </OutletWidthShell>
+      <OutletFooter />
     </article>
   );
 };
+
+// activities to be destructured to separate components
 
 const RecentActivity = () => {
   return (

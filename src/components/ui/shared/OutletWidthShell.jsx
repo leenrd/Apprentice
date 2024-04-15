@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const OutletWidthShell = ({ children }) => {
-  return <article className="w-[90%] mx-auto my-6">{children}</article>;
+  return <article className="w-auto ml-[17rem] mr-11 my-6">{children}</article>;
 };
 
 OutletWidthShell.propTypes = {

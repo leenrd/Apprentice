@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import auth, { AccountType } from "@/utils/auth";
 import cn from "@/utils/twMerge";
+import auth, { AccountType } from "@/utils/auth";
+
 import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
@@ -13,7 +14,7 @@ import {
 const Sidebar = () => {
   const sideBarType = auth.accountType;
   return (
-    <aside className="w-80 h-screen bg-white text-black py-8 px-4 border-r-slate border-r-2 sticky">
+    <aside className="w-60 h-screen bg-white text-black py-8 px-4 border-r-slate border-r-2 z-50 fixed">
       <div className="flex flex-col justify-between h-[100%]">
         <div>
           <h1 className="font-bold text-md md:text-lg lg:text-xl  mb-5 pl-3">
@@ -25,7 +26,7 @@ const Sidebar = () => {
           ) : null}
           <Tab label="Logs" Icon={FileClock} to="/logs" />
         </div>
-        <div>
+        <div className="mb-4">
           <Tab label="Settings" Icon={Settings} to="/settings" />
           <Tab label="Log out" Icon={LogOut} to="/logout" />
         </div>

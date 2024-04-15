@@ -2,19 +2,9 @@ import { Link } from "react-router-dom";
 import { TextInput, Select, SelectItem, Button } from "@tremor/react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as y from "yup";
+import { signUpSchema } from "@/utils/validationSchemas";
 
 const FormSignUp = () => {
-  const signUpSchema = y.object().shape({
-    username: y.string().required().min(3, "Invalid username"),
-    password: y.string().required().min(8, "Must be at least 8 characters"),
-    confirmPassword: y
-      .string()
-      .required()
-      .oneOf([y.ref("password"), null]),
-  });
-
-  // TODO: error states
   const {
     register,
     handleSubmit,
@@ -55,6 +45,7 @@ const FormSignUp = () => {
               type="text"
               className="pl-4 pr-6 py-1 mt-2"
               placeholder="Username"
+              error={errors.username ? true : null}
               {...register("username")}
             />
             {errors.username ? (
@@ -67,6 +58,7 @@ const FormSignUp = () => {
             type="password"
             className="pl-4 pr-6 py-1"
             placeholder="Password"
+            error={errors.password ? true : null}
             {...register("password")}
           />
           {errors.password ? (
@@ -81,6 +73,7 @@ const FormSignUp = () => {
             type="password"
             className="pl-4 pr-6 py-1"
             placeholder="Confirm password"
+            error={errors.confirmPassword ? true : null}
             {...register("confirmPassword")}
           />
           {errors.confirmPassword ? (
@@ -95,8 +88,8 @@ const FormSignUp = () => {
           </Select>
           <Button
             variant="primary"
-            className="mt-3 w-[100%] font-bold disabled:bg-orange-200 disabled:cursor-not-allowed"
-            disabled={isSubmitting}
+            className="mt-3 w-[100%] font-bold"
+            loading={isSubmitting}
             type="submit"
           >
             Sign up

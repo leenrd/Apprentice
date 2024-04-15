@@ -14,7 +14,7 @@ import {
 const Sidebar = () => {
   const sideBarType = auth.accountType;
   return (
-    <aside className="w-60 h-screen bg-white text-black py-8 px-4 border-r-slate border-r-2 z-50 fixed">
+    <aside className="w-60 h-screen bg-white text-black py-8 px-4 border-r-slate border-r-2 z-1 fixed">
       <div className="flex flex-col justify-between h-[100%]">
         <div>
           <h1 className="font-bold text-md md:text-lg lg:text-xl  mb-5 pl-3">

@@ -3,7 +3,7 @@ import { RiSearchLine } from "@remixicon/react";
 import { TextInput, Button } from "@tremor/react";
 import { PackagePlus } from "lucide-react";
 
-const OutletHeader = ({ title, subText }) => {
+const OutletHeader = ({ title, subText, type }) => {
   return (
     <div className="border-b-slate border-b-2 px-9 py-[0.7rem] ml-[15rem] flex items-center justify-between">
       <div>
@@ -13,19 +13,29 @@ const OutletHeader = ({ title, subText }) => {
       <div>
         <div className="flex gap-2">
           {" "}
-          <TextInput icon={RiSearchLine} placeholder="Search..." />{" "}
-          <Button>
-            <PackagePlus className="h-5 w-5" />
-          </Button>
+          {type !== "settings" ? <SearchBar /> : null}
         </div>
       </div>
     </div>
   );
 };
 
+const SearchBar = () => {
+  return (
+    <>
+      <TextInput icon={RiSearchLine} placeholder="Search... or press ctrl+K" />{" "}
+      <Button>
+        <PackagePlus className="h-5 w-5" />
+      </Button>
+    </>
+  );
+};
+
 OutletHeader.propTypes = {
+  type: PropTypes.string,
   title: PropTypes.string.isRequired,
   subText: PropTypes.string.isRequired,
+  cmdToggle: PropTypes.func,
 };
 
 export default OutletHeader;

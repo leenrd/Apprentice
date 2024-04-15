@@ -7,6 +7,7 @@ import { X } from "lucide-react";
 
 const RootPage = () => {
   const [value, setToggle] = useToggle(true);
+
   return (
     <div className="relative">
       {!value ? <Banner toggle={setToggle} /> : null}

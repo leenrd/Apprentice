@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import Modal from "@/components/ui/Modal-portal";
 import { Button, TextInput } from "@tremor/react";
 import useToggle from "@/hooks/useToggle";
-import * as y from "yup";
-
+import { loginSchema } from "@/utils/validationSchemas";
 const FormLogIn = () => {
   const [value, setToggle] = useToggle(false);
 
@@ -56,11 +55,6 @@ const FormLogIn = () => {
 export default FormLogIn;
 
 const Form = () => {
-  const loginSchema = y.object().shape({
-    username: y.string().required().min(3, "Invalid username"),
-    password: y.string().required().min(8, "Must be at least 8 characters"),
-  });
-
   const {
     register,
     handleSubmit,
@@ -83,6 +77,7 @@ const Form = () => {
           placeholder="Username"
           type="text"
           className="pl-4 pr-6 py-1"
+          error={errors.username ? true : null}
           {...register("username")}
         />
         {errors.username ? (
@@ -94,6 +89,7 @@ const Form = () => {
           type="password"
           className="pl-4 pr-6 py-1"
           placeholder="Password"
+          error={errors.password ? true : null}
           {...register("password")}
         />
         {errors.password ? (
@@ -106,8 +102,8 @@ const Form = () => {
 
       <button
         type="submit"
-        className="cursor-pointer font-semibold rounded-md text-sm active:scale-95 disabled:opacity-80 disabled:cursor-not-allowed text-white px-6 py-2 w-[100%] bg-tremor-brand hover:bg-tremor-brand-emphasis mb-2"
-        disabled={isSubmitting}
+        className="cursor-pointer font-semibold rounded-md text-sm active:scale-95  text-white px-6 py-2 w-[100%] bg-tremor-brand hover:bg-tremor-brand-emphasis mb-2"
+        loading={isSubmitting}
       >
         Log in
       </button>

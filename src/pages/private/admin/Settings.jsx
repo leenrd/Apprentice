@@ -78,8 +78,7 @@ const SettingsForms = () => {
               }`}</p>
             ) : null}
             <p className="text-sm text-tremor-content-emphasis">
-              This is your public display name. It can be your real name or a
-              pseudonym.
+              Your password should be long and secure
             </p>
           </div>
           <div className="flex flex-col gap-2 mb-4">
@@ -95,8 +94,7 @@ const SettingsForms = () => {
               <p className="text-red-500 text-xs">Passwords must match</p>
             ) : null}
             <p className="text-sm text-tremor-content-emphasis">
-              This is your public display name. It can be your real name or a
-              pseudonym.
+              Confirm password by matching it to your password.
             </p>
           </div>
           <Button

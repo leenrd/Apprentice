@@ -24,8 +24,8 @@ const OutletHeader = ({ title, subText }) => {
 };
 
 OutletHeader.propTypes = {
-  title: PropTypes.string,
-  subText: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  subText: PropTypes.string.isRequired,
 };
 
 export default OutletHeader;

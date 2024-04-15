@@ -1,6 +1,6 @@
 import OutletWidthShell from "@/components/ui/shared/OutletWidthShell";
 import OutletHeader from "@/components/ui/shared/OutletHeader";
-import DashboardTransactions from "./Dashboard-Transactions";
+import DashboardTransactions from "@/features/admin/Dashboard-Transactions";
 import { useState } from "react";
 import {
   Card,
@@ -15,12 +15,12 @@ import {
 const Dashboard = () => {
   return (
     <article className="w-full">
-      <OutletHeader />
+      <OutletHeader
+        title={"Inventory Management"}
+        subText={"Manage inventory and generate updates."}
+      />
       <OutletWidthShell>
-        <DashboardTransactions
-          title={"Inventory Overview"}
-          subText={"Manage inventory and generate updates."}
-        />
+        <DashboardTransactions />
         <div className="flex gap-3 items-start w-full">
           <WarehouseOverview />
           <TotalResources />

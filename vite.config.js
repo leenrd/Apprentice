@@ -8,6 +8,7 @@ export default defineConfig({
       "@": "/src",
       "@components": "/src/components",
       "@pages": "/src/pages",
+      "@features": "/src/features",
     },
   },
   plugins: [react()],

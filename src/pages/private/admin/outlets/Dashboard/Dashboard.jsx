@@ -1,5 +1,5 @@
 import OutletWidthShell from "@/components/ui/shared/OutletWidthShell";
-import DashboardHeader from "./Dashboard-Header";
+import OutletHeader from "@/components/ui/shared/OutletHeader";
 import DashboardTransactions from "./Dashboard-Transactions";
 import { useState } from "react";
 import {
@@ -15,9 +15,12 @@ import {
 const Dashboard = () => {
   return (
     <article className="w-full">
-      <DashboardHeader />
+      <OutletHeader />
       <OutletWidthShell>
-        <DashboardTransactions />
+        <DashboardTransactions
+          title={"Inventory Overview"}
+          subText={"Manage inventory and generate updates."}
+        />
         <div className="flex gap-3 items-start w-full">
           <WarehouseOverview />
           <TotalResources />

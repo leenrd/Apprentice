@@ -1,15 +1,14 @@
+import PropTypes from "prop-types";
 import { RiSearchLine } from "@remixicon/react";
 import { TextInput, Button } from "@tremor/react";
 import { PackagePlus } from "lucide-react";
 
-const DashboardHeader = () => {
+const OutletHeader = ({ title, subText }) => {
   return (
     <div className="border-b-slate border-b-2 px-9 py-[0.7rem] flex items-center justify-between">
       <div>
-        <h1 className="text-lg font-medium">Inventory Overview</h1>
-        <span className="text-sm text-tremor-content">
-          Manage inventory and generate updates.
-        </span>
+        <h1 className="text-lg font-medium">{title}</h1>
+        <span className="text-sm text-tremor-content">{subText}</span>
       </div>
       <div>
         <div className="flex gap-2">
@@ -24,4 +23,9 @@ const DashboardHeader = () => {
   );
 };
 
-export default DashboardHeader;
+OutletHeader.propTypes = {
+  title: PropTypes.string,
+  subText: PropTypes.string,
+};
+
+export default OutletHeader;

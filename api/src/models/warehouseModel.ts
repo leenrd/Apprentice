@@ -3,7 +3,8 @@ import { Schema, model } from "mongoose";
 interface WarehouseType {
   _id: string;
   name: string;
-  unitLoad: [];
+  capacity: number;
+  status: string;
 }
 
 const WarehouseSchema = new Schema<WarehouseType>({
@@ -12,16 +13,12 @@ const WarehouseSchema = new Schema<WarehouseType>({
     required: true,
     index: true,
   },
-  unitLoad: {
-    type: [
-      {
-        unitClass: {
-          type: String,
-          enum: ["dry", "wet", "other"],
-          capacity: Number,
-        },
-      },
-    ],
+  capacity: {
+    type: Number,
+    required: true,
+  },
+  status: {
+    type: String,
     required: true,
   },
 });

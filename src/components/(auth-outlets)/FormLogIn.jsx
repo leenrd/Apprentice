@@ -119,7 +119,7 @@ const TestAccModal = ({ onClose }) => {
         onClick={onClose}
       ></div>
       <div className="p-5 z-50 bg-white rounded-md absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-5">
-        <div className="p-10 flex-col items-start justify-start border-[0.8px] border-slate-200 rounded-md  hover:border-orange-600 transition-colors hover:shadow-lg cursor-pointer">
+        <div className="p-10 flex-col items-start justify-start border-[0.8px] border-slate-200 rounded-md  hover:border-tremor-brand transition-colors hover:shadow-lg cursor-pointer">
           <div className="flex gap-3 items-center mt-36">
             <div className="w-4 h-4 bg-tremor-brand rounded-full "></div>
             <h2 className="font-bold text-xl mb-1">Staff</h2>
@@ -128,7 +128,7 @@ const TestAccModal = ({ onClose }) => {
             Access to stocks, warehouse, and management.
           </p>
         </div>
-        <div className="p-10 flex-col items-start justify-start border-[0.8px] border-slate-200 rounded-md hover:border-tremor-bg-tremor-brand transition-colors hover:shadow-lg cursor-pointer">
+        <div className="p-10 flex-col items-start justify-start border-[0.8px] border-slate-200 rounded-md hover:border-tremor-brand transition-colors hover:shadow-lg cursor-pointer">
           <div className="flex gap-3 items-center mt-36">
             <div className="w-4 h-4 bg-tremor-brand rounded-full "></div>
             <h2 className="font-bold text-xl mb-1">Admin</h2>

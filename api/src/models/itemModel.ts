@@ -11,7 +11,7 @@ interface Item {
   quantityPerPurchaseUnit: number;
   costPerPurchaseUnit: number;
   costPerSingleItem: number;
-  unitLoad: null | string;
+  warehouse: string | null;
 }
 
 const ItemSchema = new Schema<Item>(
@@ -41,7 +41,7 @@ const ItemSchema = new Schema<Item>(
       type: Number,
       required: true,
     },
-    unitLoad: {
+    warehouse: {
       type: Schema.Types.ObjectId,
       ref: "warehouse",
     },

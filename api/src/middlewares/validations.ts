@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
+import ApiResponse, { HTTP_STATUS } from "../utils/responseHandler";
 import * as y from "yup";
 
 export const SIGNUP_VALIDATOR =

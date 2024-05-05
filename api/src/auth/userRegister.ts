@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import User from "../models/userModel";
+import User, { UserT } from "../models/userModel";
 import ApiResponse, { HTTP_STATUS } from "../utils/responseHandler";
 import { bakeCookies, createJWT, hashPassword } from "./userUtils";
 import { SIGNUP_VALIDATOR } from "../middlewares/validations";
@@ -11,10 +11,11 @@ router.post(
   "/signup",
   SIGNUP_VALIDATOR(SIGNUP_SCHEMA),
   async (req: Request, res: Response) => {
+    const { username, password } = req.body;
+
     try {
-      // User.Admin constitutes to base user schema
-      let user = await User.Admin.findOne({
-        username: req.body.username,
+      let user = await User.findOne({
+        username: username,
       });
 
       if (user)
@@ -23,18 +24,10 @@ router.post(
           "User already exists"
         );
 
-      let newUser;
-      if (req.body.role === "staff") {
-        newUser = new User.Staff({
-          ...req.body,
-          password: await hashPassword(req.body.password),
-        });
-      } else {
-        newUser = new User.Admin({
-          ...req.body,
-          password: await hashPassword(req.body.password),
-        });
-      }
+      const newUser: UserT = await User.create({
+        ...req.body,
+        password: await hashPassword(password),
+      });
 
       const token = createJWT(newUser);
       bakeCookies(res, token);

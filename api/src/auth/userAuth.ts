@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 import { bakeCookies, comparePassword, createJWT } from "./userUtils";
-import User from "@/models/userModel";
-import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
-import { LOGIN_VALIDATOR } from "@/middlewares/validations";
+import User from "../models/userModel";
+import ApiResponse, { HTTP_STATUS } from "../utils/responseHandler";
+import { LOGIN_VALIDATOR } from "../middlewares/validations";
 import { LOGIN_SCHEMA } from "./validationSchema";
 
 const router = express.Router();
@@ -14,8 +14,7 @@ router.post(
     const { username, password } = req.body;
 
     try {
-      // User.Admin constitutes to base user schema
-      let user = await User.Admin.findOne({
+      let user = await User.findOne({
         username: username,
       });
 
@@ -44,3 +43,5 @@ router.post(
     }
   }
 );
+
+export default router;

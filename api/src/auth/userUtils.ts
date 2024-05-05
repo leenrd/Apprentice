@@ -14,7 +14,7 @@ type User = {
   id?: string;
 };
 
-export const createJWT = (user: User) => {
+export const createJWT = (user: any) => {
   const token = jwt.sign(
     { userId: user.id },
     process.env.JWT_SECRET as string,

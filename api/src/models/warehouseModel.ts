@@ -5,6 +5,7 @@ interface WarehouseType {
   name: string;
   capacity: number;
   status: string;
+  manager: Schema.Types.ObjectId;
 }
 
 const WarehouseSchema = new Schema<WarehouseType>({
@@ -20,6 +21,10 @@ const WarehouseSchema = new Schema<WarehouseType>({
   status: {
     type: String,
     required: true,
+  },
+  manager: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
   },
 });
 

@@ -1,5 +1,6 @@
-import express, { Request, Response } from "express";
+import express, { Response } from "express";
 import userRoute from "./auth/userRegister";
+import authRoute from "./auth/userAuth";
 import cors from "cors";
 
 require("dotenv").config();
@@ -14,6 +15,7 @@ server.get("/", (_, res: Response) => {
 });
 
 server.use("/user", userRoute);
+server.use("/auth", authRoute);
 
 // error handler
 server.all("*", () => {

@@ -22,10 +22,7 @@ class ApiResponse {
 
   error(status: HTTP_STATUS, message?: string) {
     if (status !== undefined) {
-      return this.res
-        .status(status)
-        .json({ message: HTTP_STATUS[status].replace(/_/g, " ") })
-        .send({ desc: message });
+      return this.res.status(status).send({ desc: message });
     } else {
       return this.res
         .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)

@@ -6,12 +6,12 @@ interface Item {
   category: string;
   itemType: string;
   vendorName: string;
-  shelfLife: Date;
+  expiry: Date;
   purchaseUnit: string;
   quantityPerPurchaseUnit: number;
   costPerPurchaseUnit: number;
   costPerSingleItem: number;
-  warehouse: string | null;
+  warehouse: Schema.Types.ObjectId;
 }
 
 const ItemSchema = new Schema<Item>(
@@ -23,7 +23,7 @@ const ItemSchema = new Schema<Item>(
     category: String,
     itemType: String,
     vendorName: String,
-    shelfLife: Date,
+    expiry: Date,
     purchaseUnit: {
       type: String,
       enum: ["case", "pack", "box"],

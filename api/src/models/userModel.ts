@@ -1,13 +1,13 @@
 import { Schema, model } from "mongoose";
 
-export interface User {
+export interface UserT {
   _id: string;
   username: string;
   password: string;
   role: string;
 }
 
-const BaseSchema = new Schema<User>(
+const UserSchema = new Schema<UserT>(
   {
     username: {
       type: String,
@@ -27,17 +27,5 @@ const BaseSchema = new Schema<User>(
   { timestamps: true }
 );
 
-const StaffSchema = new Schema(
-  {
-    warehouse: {
-      type: Schema.Types.ObjectId,
-      ref: "warehouse",
-    },
-  },
-  { discriminatorKey: "role" }
-);
-
-const Admin = model<User>("user", BaseSchema);
-const Staff = Admin.discriminator("staff", StaffSchema);
-
-export default { Admin, Staff };
+const User = model<UserT>("user", UserSchema);
+export default User;

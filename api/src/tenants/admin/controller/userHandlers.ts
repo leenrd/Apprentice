@@ -27,9 +27,7 @@ const getUser = async (req: Request, res: Response) => {
     const user = await User.findById(id, {
       password: 0,
       __v: 0,
-    })
-      .lean()
-      .exec();
+    }).lean();
 
     if (!user) {
       return new ApiResponse(res).error(

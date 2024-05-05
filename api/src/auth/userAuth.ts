@@ -4,12 +4,14 @@ import User from "@/models/userModel";
 import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
 import { LOGIN_VALIDATOR } from "@/middlewares/validations";
 import { LOGIN_SCHEMA } from "@/utils/validationSchema";
+import LOGIN_LIMITER from "@/middlewares/loginLimiter";
 
 const router = express.Router();
 
 router.post(
   "/login",
   LOGIN_VALIDATOR(LOGIN_SCHEMA),
+  LOGIN_LIMITER,
   async (req: Request, res: Response) => {
     const { username, password } = req.body;
 
@@ -43,5 +45,8 @@ router.post(
     }
   }
 );
+
+router.post("/refresh", async (req: Request, res: Response) => {});
+router.post("/logout", async (req: Request, res: Response) => {});
 
 export default router;

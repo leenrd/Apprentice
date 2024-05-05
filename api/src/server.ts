@@ -8,7 +8,6 @@ import cors from "cors";
 require("dotenv").config();
 const server = express();
 
-// @Global: Middleware
 server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));

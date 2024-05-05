@@ -3,7 +3,7 @@ import { bakeCookies, comparePassword, createJWT } from "./userUtils";
 import User from "@/models/userModel";
 import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
 import { LOGIN_VALIDATOR } from "@/middlewares/validations";
-import { LOGIN_SCHEMA } from "./validationSchema";
+import { LOGIN_SCHEMA } from "@/utils/validationSchema";
 
 const router = express.Router();
 

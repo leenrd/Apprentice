@@ -10,3 +10,9 @@ export const SIGNUP_SCHEMA = y.object().shape({
   password: y.string().min(8).max(20).required(),
   role: y.string().required().oneOf(["admin", "staff"]),
 });
+
+export const UPDATE_USER_SCHEMA = y.object().shape({
+  username: y.string().required(),
+  password: y.string().min(8).max(20).required(),
+  role: y.string().required().oneOf(["admin", "staff"]),
+});

@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
-import User, { UserT } from "../models/userModel";
-import ApiResponse, { HTTP_STATUS } from "../utils/responseHandler";
+import User, { UserT } from "@/models/userModel";
+import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
 import { bakeCookies, createJWT, hashPassword } from "./userUtils";
-import { SIGNUP_VALIDATOR } from "../middlewares/validations";
+import { SIGNUP_VALIDATOR } from "@/middlewares/validations";
 import { SIGNUP_SCHEMA } from "./validationSchema";
 
 const router = express.Router();
@@ -16,7 +16,7 @@ router.post(
     try {
       let user = await User.findOne({
         username: username,
-      });
+      }).exec();
 
       if (user)
         return new ApiResponse(res).error(

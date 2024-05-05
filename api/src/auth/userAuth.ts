@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 import { bakeCookies, comparePassword, createJWT } from "./userUtils";
-import User from "../models/userModel";
-import ApiResponse, { HTTP_STATUS } from "../utils/responseHandler";
-import { LOGIN_VALIDATOR } from "../middlewares/validations";
+import User from "@/models/userModel";
+import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
+import { LOGIN_VALIDATOR } from "@/middlewares/validations";
 import { LOGIN_SCHEMA } from "./validationSchema";
 
 const router = express.Router();
@@ -16,7 +16,7 @@ router.post(
     try {
       let user = await User.findOne({
         username: username,
-      });
+      }).exec();
 
       if (!user)
         return new ApiResponse(res).error(

@@ -1,13 +1,13 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Document } from "mongoose";
 
-export interface UserT {
+export interface UserT extends Document {
   _id: string;
   username: string;
   password: string;
   role: string;
 }
 
-const UserSchema = new Schema<UserT>(
+export const UserSchema = new Schema<UserT>(
   {
     username: {
       type: String,

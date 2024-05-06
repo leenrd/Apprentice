@@ -1,10 +1,11 @@
 import express, { Request, Response } from "express";
 import { bakeCookies, comparePassword, createJWT } from "./userUtils";
-import User from "@/models/userModel";
+import User, { UserSchema } from "@/models/userModel";
 import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
 import { LOGIN_VALIDATOR } from "@/middlewares/validations";
 import { LOGIN_SCHEMA } from "@/utils/validationSchema";
 import LOGIN_LIMITER from "@/middlewares/loginLimiter";
+import LOGGER from "@/middlewares/logger";
 
 const router = express.Router();
 

@@ -1,3 +1,5 @@
+import LOGGER from "@/middlewares/logger";
+import { NextFunction } from "express";
 import { Schema, model } from "mongoose";
 
 interface Item {
@@ -48,6 +50,11 @@ const ItemSchema = new Schema<Item>(
   },
   { timestamps: true }
 );
+
+// ItemSchema.post("save", function (next: NextFunction | any, doc: Item) {
+//   LOGGER(this, "info", "Item saved");
+//   next();
+// });
 
 const Item = model<Item>("item", ItemSchema);
 

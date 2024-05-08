@@ -1,3 +1,5 @@
+import LOGGER from "@/middlewares/logger";
+import { NextFunction, Request, Response } from "express";
 import { Schema, model, Document } from "mongoose";
 
 export interface UserT extends Document {

@@ -24,3 +24,4 @@ Optimized Inventory Management:
 
 ![SignIn](https://github.com/leenrd/Apprentice/assets/103997539/cd993aa3-aa38-4658-a469-dcfe71be7e68)
 ![admin - dashboard2](https://github.com/leenrd/Apprentice/assets/103997539/e258d9fa-48f9-4858-95c0-e4ecb8844684)
+![alt text](public/image.png)

@@ -1,20 +1,25 @@
 import express, { Response } from "express";
+import bodyParser from "body-parser";
 import userRoute from "@/auth/userRegister";
 import authRoute from "@/auth/userAuth";
-import userHandler from "@tenants/admin/router/users";
+import userHandler from "@/tenants/router/users";
+import swaggerOptions from "@/utils/swaggerOptions";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 import cors from "cors";
 
 // @Global: Config
 require("dotenv").config();
 const server = express();
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
 server.use(cors());
+server.use(bodyParser.json());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
-server.get("/", (_, res: Response) => {
-  res.status(200).send({ msg: "server started" });
-});
+// @Access: Documentation
+server.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // @Access: Private
 server.use("/api", userHandler);

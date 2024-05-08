@@ -1,7 +1,12 @@
 import express, { Request, Response } from "express";
 import User, { UserT } from "@/models/userModel";
 import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
-import { bakeCookies, createJWT, hashPassword } from "./userUtils";
+import {
+  accessToken,
+  bakeCookies,
+  hashPassword,
+  refreshToken,
+} from "./userUtils";
 import { SIGNUP_VALIDATOR } from "@/middlewares/validations";
 import { SIGNUP_SCHEMA } from "@/utils/validationSchema";
 
@@ -29,10 +34,11 @@ router.post(
         password: await hashPassword(password),
       });
 
-      const token = createJWT(newUser);
-      bakeCookies(res, token);
+      const access_token = accessToken(newUser);
+      const refresh_token = refreshToken(newUser);
+      bakeCookies(res, refresh_token);
 
-      return new ApiResponse(res).send({ userId: newUser._id });
+      return new ApiResponse(res).send(access_token);
     } catch (error: any) {
       return new ApiResponse(res).error(
         HTTP_STATUS.INTERNAL_SERVER_ERROR,

@@ -19,7 +19,7 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 // @Access: Documentation
-server.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // @Access: Private
 server.use("/api", userHandler);

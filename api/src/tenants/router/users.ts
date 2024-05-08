@@ -5,10 +5,13 @@ import {
   UPDATE_USER_VALIDATOR,
 } from "@/middlewares/validations";
 import { SIGNUP_SCHEMA, UPDATE_USER_SCHEMA } from "@/utils/validationSchema";
+import TOKEN_VERIFIER from "@/middlewares/tokenValidator";
 
 const { getAllUsers, getUser, postUser, deleteUser, updateUser } = userHandlers;
 const router = express.Router();
 // @Desc: User management routes for admin
+
+router.use(TOKEN_VERIFIER);
 
 /**
  * @openapi
@@ -19,6 +22,8 @@ const router = express.Router();
  *     responses:
  *       '200':
  *         description: A list of users
+  *     '400':
+  *        description: Bad request
 
  *   post:
  *     summary: Create a new user

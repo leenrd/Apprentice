@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
+import User from "@/models/userModel";
 
 export const hashPassword = (password: string) => {
   return bcrypt.hash(password, 10);
@@ -14,10 +16,31 @@ type User = {
   id?: string;
 };
 
-export const createJWT = (user: User | any) => {
+export const accessToken = (user: User | any) => {
   const token = jwt.sign(
-    { userId: user.id },
-    process.env.JWT_SECRET as string,
+    {
+      user: {
+        id: user.id,
+        name: user.name,
+        role: user.role,
+      },
+    },
+    process.env.ACCESS_TOKEN as string,
+    {
+      expiresIn: "10s",
+    }
+  );
+  return token;
+};
+
+export const refreshToken = (user: User | any) => {
+  const token = jwt.sign(
+    {
+      user: {
+        id: user.id,
+      },
+    },
+    process.env.REFRESH_TOKEN as string,
     {
       expiresIn: "1d",
     }
@@ -25,10 +48,77 @@ export const createJWT = (user: User | any) => {
   return token;
 };
 
-export const bakeCookies = (res: Response, token: string) => {
-  res.cookie("auth_token", token, {
+export const bakeCookies = (res: Response, refreshToken: string) => {
+  res.cookie("ref_token", refreshToken, {
     httpOnly: true,
     maxAge: 86400000,
     secure: process.env.NODE_ENV === "production",
   });
+};
+
+export const verifyRefreshToken = (res: Response, refresh_token: string) => {
+  const payload = jwt.verify(
+    refresh_token,
+    process.env.REFRESH_TOKEN as string,
+    async (err, decoded: any) => {
+      if (err) {
+        return new ApiResponse(res).error(
+          HTTP_STATUS.FORBIDDEN,
+          "Invalid token"
+        );
+      }
+
+      const user = await User.findOne({ _id: decoded.user.id }).exec();
+
+      if (!user)
+        return new ApiResponse(res).error(
+          HTTP_STATUS.NOT_FOUND,
+          "User not found"
+        );
+
+      try {
+        const access_token = accessToken(user);
+
+        return new ApiResponse(res).send(access_token);
+      } catch (error: any) {
+        return new ApiResponse(res).error(
+          HTTP_STATUS.INTERNAL_SERVER_ERROR,
+          error.message
+        );
+      }
+    }
+  );
+  return payload;
+};
+
+declare global {
+  namespace Express {
+    interface Request {
+      user: String;
+      role: String;
+    }
+  }
+}
+
+export const verifyAccessToken = (
+  req: Request,
+  res: Response,
+  access_token: string
+) => {
+  const payload = jwt.verify(
+    access_token,
+    process.env.ACCESS_TOKEN as string,
+    async (err, decoded: any) => {
+      if (err) {
+        return new ApiResponse(res).error(
+          HTTP_STATUS.FORBIDDEN,
+          "Invalid token"
+        );
+      }
+
+      req.user = decoded.user.id;
+      req.role = decoded.user.role;
+    }
+  );
+  return payload;
 };

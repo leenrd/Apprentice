@@ -1,11 +1,16 @@
 import express, { Request, Response } from "express";
-import { bakeCookies, comparePassword, createJWT } from "./userUtils";
-import User, { UserSchema } from "@/models/userModel";
+import {
+  bakeCookies,
+  comparePassword,
+  accessToken,
+  refreshToken,
+  verifyRefreshToken,
+} from "./userUtils";
+import User from "@/models/userModel";
 import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
 import { LOGIN_VALIDATOR } from "@/middlewares/validations";
 import { LOGIN_SCHEMA } from "@/utils/validationSchema";
 import LOGIN_LIMITER from "@/middlewares/loginLimiter";
-import LOGGER from "@/middlewares/logger";
 
 const router = express.Router();
 
@@ -34,10 +39,11 @@ router.post(
           "Invalid password"
         );
 
-      const token = createJWT(user);
-      bakeCookies(res, token);
+      const access_token = accessToken(user);
+      const refresh_token = refreshToken(user);
+      bakeCookies(res, refresh_token);
 
-      return new ApiResponse(res).send({ userId: user._id });
+      return new ApiResponse(res).send(access_token);
     } catch (error: any) {
       return new ApiResponse(res).error(
         HTTP_STATUS.INTERNAL_SERVER_ERROR,
@@ -47,7 +53,33 @@ router.post(
   }
 );
 
-router.post("/refresh", async (req: Request, res: Response) => {});
-router.post("/logout", async (req: Request, res: Response) => {});
+router.post("/refresh", async (req: Request, res: Response) => {
+  const { ref_token } = req.cookies;
+
+  if (!ref_token)
+    return new ApiResponse(res).error(
+      HTTP_STATUS.UNAUTHORIZED,
+      "No refresh token found"
+    );
+
+  const refreshToken = verifyRefreshToken(res, ref_token);
+  return new ApiResponse(res).send(refreshToken);
+});
+
+router.post("/logout", async (req: Request, res: Response) => {
+  const { ref_token } = req.cookies;
+
+  if (!ref_token)
+    return new ApiResponse(res).error(
+      HTTP_STATUS.UNAUTHORIZED,
+      "No refresh token found"
+    );
+  res.clearCookie("ref_token", {
+    httpOnly: true,
+    maxAge: 86400000,
+    secure: process.env.NODE_ENV === "production",
+  });
+  return new ApiResponse(res).send("Logged out");
+});
 
 export default router;

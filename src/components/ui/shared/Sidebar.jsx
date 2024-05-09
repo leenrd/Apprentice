@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import cn from "@/utils/twMerge";
-import auth, { AccountType } from "@/utils/auth";
-
+import AccountType from "@/utils/authRoleConstant";
+import { useContext } from "react";
+import { AuthContext } from "@/hooks/useAuth";
 import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
@@ -12,7 +13,8 @@ import {
 } from "lucide-react";
 
 const Sidebar = () => {
-  const sideBarType = auth.accountType;
+  const { userAuth } = useContext(AuthContext);
+  const sideBarType = userAuth.accountType;
   return (
     <aside className="w-60 h-screen bg-white text-black py-8 px-4 border-r-slate border-r-2 z-1 fixed">
       <div className="flex flex-col justify-between h-[100%]">

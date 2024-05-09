@@ -6,6 +6,22 @@ A Full-stack Inventory Management Application (IMS) created using MERN (MongoDB,
 >
 > Application in progress.
 
+### Todo
+
+- [x] auth
+- [] rbac
+- [] admin crud for warehouse
+- [] admin crud for users
+- [] admin transactions / graphs
+- [] admin logs / recent activities
+- [] admin settings
+- [] staff crud for items
+- [] staff transactions / graphs
+- [] staff low stock / near expiry
+- [] staff settings
+- [] staff generate excel report of items
+- [] recursive aggregation pipeline
+
 ## Features
 
 Enhanced Visibility and Control:

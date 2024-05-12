@@ -100,13 +100,13 @@ const Form = () => {
         ) : null}
       </div>
 
-      <button
+      <Button
         type="submit"
         className="cursor-pointer font-semibold rounded-md text-sm active:scale-95  text-white px-6 py-2 w-[100%] bg-tremor-brand hover:bg-tremor-brand-emphasis mb-2"
         loading={isSubmitting}
       >
         Log in
-      </button>
+      </Button>
     </form>
   );
 };

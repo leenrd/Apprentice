@@ -10,6 +10,7 @@ import {
   List,
   ListItem,
   Divider,
+  Button,
 } from "@tremor/react";
 import OutletFooter from "@/components/ui/shared/OutletFooter";
 
@@ -22,10 +23,10 @@ const Dashboard = () => {
       />
       <OutletWidthShell>
         <DashboardTransactions />
-        <div className="flex gap-3 items-start w-full mb-48">
-          <WarehouseOverview />
-          <TotalResources />
+        <div className="flex gap-3 items-start w-full mb-40">
           <RecentActivity />
+          <TotalResources />
+          <WarehouseOverview />
         </div>
       </OutletWidthShell>
       <OutletFooter />
@@ -37,7 +38,7 @@ const Dashboard = () => {
 
 const RecentActivity = () => {
   return (
-    <div className="flex-1">
+    <div className="flex-1 basis-20 h-full">
       <h1 className="font-bold text-md md:text-lg lg:text-xl mb-2">
         Recent Activity
       </h1>
@@ -111,7 +112,7 @@ const WarehouseOverview = () => {
     { color: "orange", tooltip: "Operational" },
   ];
   return (
-    <div className="flex-1">
+    <div className="flex-1 h-full">
       <h1 className="font-bold text-md md:text-lg lg:text-xl mb-2">
         Warehouses&apos; Overview
       </h1>
@@ -140,11 +141,11 @@ const WarehouseOverview = () => {
           </p>
           <Tracker data={data} className="mt-2" />
         </div>
-        <div className="mb-6">
+        <div className="mb-14">
           <p className="text-tremor-default flex items-center justify-between">
             {" "}
             <span className="text-tremor-content-strong dark:text-dark-tremor-content-strong font-medium">
-              Warehouse 1
+              Warehouse 3
             </span>{" "}
             <span className="text-tremor-content dark:text-dark-tremor-content">
               Availability
@@ -153,6 +154,7 @@ const WarehouseOverview = () => {
           <Tracker data={data} className="mt-2" />
         </div>
       </Card>
+      <Button className="w-full mt-5">View All Warehouses</Button>
     </div>
   );
 };
@@ -168,7 +170,7 @@ const TotalResources = () => {
     { name: "Warehouse 1", sales: 139 },
   ];
   return (
-    <div className="flex-1">
+    <div className="flex-1 min-h-full">
       <h1 className="font-bold text-md md:text-lg lg:text-xl mb-2">
         Total Resources
       </h1>
@@ -186,7 +188,7 @@ const TotalResources = () => {
             "orange-400",
           ]}
         />
-        <div className="mt-12">
+        <div className="mt-16">
           <Legend
             className="mt-3 mx-auto  ml-5"
             categories={[

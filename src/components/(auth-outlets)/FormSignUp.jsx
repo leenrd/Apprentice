@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { TextInput, Select, SelectItem, Button } from "@tremor/react";
-import { useForm } from "react-hook-form";
+import { useController, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "@/utils/validationSchemas";
 
 const FormSignUp = () => {
   const {
+    control,
     register,
     handleSubmit,
     reset,
@@ -14,8 +15,11 @@ const FormSignUp = () => {
     resolver: yupResolver(signUpSchema),
   });
 
-  const onSubmit = (data) => {
+  const { field } = useController({ control, name: "role" });
+
+  const onSubmit = async (data) => {
     console.log(data);
+    await new Promise((thing) => setTimeout(thing, 3000));
     reset();
   };
 
@@ -82,10 +86,34 @@ const FormSignUp = () => {
         </div>
         <div className="w-[100%] flex flex-col items-start">
           <label className="text-sm font-normal mb-2">Account Type</label>
-          <Select defaultValue="1" className="mb-5">
-            <SelectItem value="1">Staff</SelectItem>
-            <SelectItem value="2">Admin</SelectItem>
+          <Select
+            name="role"
+            defaultValue="staff"
+            className="mb-1"
+            value={field.value}
+            onChange={field.onChange}
+            error={errors.role ? true : null}
+          >
+            <SelectItem
+              value="staff"
+              onBlur={field.onBlur}
+              name={field.name}
+              ref={field.ref}
+            >
+              Staff
+            </SelectItem>
+            <SelectItem
+              value="admin"
+              onBlur={field.onBlur}
+              name={field.name}
+              ref={field.ref}
+            >
+              Admin
+            </SelectItem>
           </Select>
+          {errors.role ? (
+            <p className="text-red-500 text-xs mb-5">Role is required</p>
+          ) : null}
           <Button
             variant="primary"
             className="mt-3 w-[100%] font-bold"

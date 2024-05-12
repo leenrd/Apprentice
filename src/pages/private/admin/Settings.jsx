@@ -1,7 +1,7 @@
 import OutletFooter from "@/components/ui/shared/OutletFooter";
 import OutletHeader from "@components/ui/shared/OutletHeader";
 import OutletWidthShell from "@components/ui/shared/OutletWidthShell";
-import { Divider, TextInput, Button } from "@tremor/react";
+import { TextInput, Button } from "@tremor/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { signUpSchema } from "@/utils/validationSchemas";
@@ -39,13 +39,8 @@ const SettingsForms = () => {
   };
   return (
     <div className="mb-14">
-      <header>
-        <h1 className="font-bold text-lg">Profile</h1>
-        <p className="text-tremor-content">This is your credentials</p>
-      </header>
-      <Divider />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col gap-16 mt-5">
           <div className="flex flex-col gap-2">
             <h6>Username</h6>
             <TextInput

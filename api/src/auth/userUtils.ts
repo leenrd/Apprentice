@@ -27,7 +27,7 @@ export const accessToken = (user: User | any) => {
     },
     process.env.ACCESS_TOKEN as string,
     {
-      expiresIn: "10s",
+      expiresIn: "10min",
     }
   );
   return token;
@@ -56,7 +56,10 @@ export const bakeCookies = (res: Response, refreshToken: string) => {
   });
 };
 
-export const verifyRefreshToken = (res: Response, refresh_token: string) => {
+export const getNewAccessTByRefreshT = (
+  res: Response,
+  refresh_token: string
+) => {
   const payload = jwt.verify(
     refresh_token,
     process.env.REFRESH_TOKEN as string,

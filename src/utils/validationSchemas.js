@@ -12,4 +12,5 @@ export const signUpSchema = y.object().shape({
     .string()
     .required()
     .oneOf([y.ref("password"), null]),
+  role: y.string().required().oneOf(["admin", "staff"]),
 });

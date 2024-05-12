@@ -25,7 +25,7 @@ const CommandMenu = () => {
         className="z-[100]"
       >
         <DialogPanel className="max-w-sm">
-          <h1 className="text-center mb-6">😌 Context Menu Prototype ✨</h1>
+          <h1 className="text-center mb-6">😌 Command Menu Prototype ✨</h1>
           <Button
             variant="light"
             className="mx-auto flex items-center"

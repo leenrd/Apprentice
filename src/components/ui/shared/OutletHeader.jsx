@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import { RiSearchLine } from "@remixicon/react";
 import { TextInput, Button } from "@tremor/react";
 import { PackagePlus } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import AccountType from "@/utils/authRoleConstant";
 
 const OutletHeader = ({ title, subText, type }) => {
   return (
@@ -21,12 +23,16 @@ const OutletHeader = ({ title, subText, type }) => {
 };
 
 const SearchBar = () => {
+  const { userAuth } = useAuth();
+
   return (
     <>
       <TextInput icon={RiSearchLine} placeholder="Search or Press Ctrl+K" />{" "}
-      <Button>
-        <PackagePlus className="h-5 w-5" />
-      </Button>
+      {userAuth.accountType === AccountType.Admin ? null : (
+        <Button>
+          <PackagePlus className="h-5 w-5" />
+        </Button>
+      )}
     </>
   );
 };

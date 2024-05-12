@@ -1,3 +1,5 @@
+import Dashboard from "@/pages/private/staff/outlets/Dashboard";
+import Logs from "@/pages/private/staff/outlets/Logs";
 import RootPage from "@pages/private/staff/RootPage";
 
 const staffRoute = [
@@ -7,7 +9,11 @@ const staffRoute = [
     children: [
       {
         index: true,
-        element: <h1>Staff Dashboard</h1>,
+        element: <Dashboard />,
+      },
+      {
+        path: "/logs",
+        element: <Logs />,
       },
     ],
   },

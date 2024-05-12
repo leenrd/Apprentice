@@ -4,7 +4,7 @@ import {
   comparePassword,
   accessToken,
   refreshToken,
-  verifyRefreshToken,
+  getNewAccessTByRefreshT,
 } from "./userUtils";
 import User from "@/models/userModel";
 import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
@@ -62,7 +62,7 @@ router.post("/refresh", async (req: Request, res: Response) => {
       "No refresh token found"
     );
 
-  const refreshToken = verifyRefreshToken(res, ref_token);
+  const refreshToken = getNewAccessTByRefreshT(res, ref_token);
   return new ApiResponse(res).send(refreshToken);
 });
 
@@ -74,6 +74,7 @@ router.post("/logout", async (req: Request, res: Response) => {
       HTTP_STATUS.UNAUTHORIZED,
       "No refresh token found"
     );
+
   res.clearCookie("ref_token", {
     httpOnly: true,
     maxAge: 86400000,

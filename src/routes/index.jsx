@@ -1,14 +1,14 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useRoutes } from "react-router-dom";
 import publicRoute from "./public";
-import { AuthContext } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import adminRoute from "./private/admin";
 import staffRoute from "./private/staff";
 import AccountType from "@/utils/authRoleConstant";
 
 const Routes = () => {
   const navigate = useNavigate();
-  const { userAuth } = useContext(AuthContext);
+  const { userAuth } = useAuth();
 
   useEffect(() => {
     if (userAuth.authenticated) navigate("/");

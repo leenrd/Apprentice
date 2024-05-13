@@ -6,6 +6,10 @@ import Modal from "@/components/ui/Modal-portal";
 import { Button, TextInput } from "@tremor/react";
 import useToggle from "@/hooks/useToggle";
 import { loginSchema } from "@/utils/validationSchemas";
+import { useMutation } from "@tanstack/react-query";
+import { useLoginHelperFn } from "@/features/auth/login-client";
+import { useAuth } from "@/hooks/useAuth";
+
 const FormLogIn = () => {
   const [value, setToggle] = useToggle(false);
 
@@ -55,6 +59,7 @@ const FormLogIn = () => {
 export default FormLogIn;
 
 const Form = () => {
+  const { setUserAuth } = useAuth();
   const {
     register,
     handleSubmit,
@@ -64,8 +69,26 @@ const Form = () => {
     resolver: yupResolver(loginSchema),
   });
 
+  const logInMutation = useMutation({
+    mutationFn: useLoginHelperFn,
+    onSuccess: () => {
+      console.log("Logged in");
+      setUserAuth(
+        (prev) =>
+          (prev = {
+            authenticated: true,
+            ...prev,
+          })
+      );
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
   const onSubmit = async (data) => {
     console.log(data);
+    await logInMutation.mutateAsync(data);
     await new Promise((thing) => setTimeout(thing, 3000));
     reset();
   };

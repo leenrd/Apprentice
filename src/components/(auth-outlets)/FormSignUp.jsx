@@ -88,7 +88,7 @@ const FormSignUp = () => {
           <label className="text-sm font-normal mb-2">Account Type</label>
           <Select
             name="role"
-            defaultValue="staff"
+            defaultValue={field.defaultValue}
             className="mb-1"
             value={field.value}
             onChange={field.onChange}

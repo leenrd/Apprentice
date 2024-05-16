@@ -1,31 +1,61 @@
-// import axios from "axios";
-// import { useMutation } from "@tanstack/react-query";
-// import { useState, useEffect } from "react";
+import axios from "axios";
 
-// const useAxiosFetchFn = (url, queryType, method) => {
-//   const { data, error, isPending, isError, isSuccess } = useMutation({
-//     mutationFn: async () => {
-//       return axios.get(url);
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
+const axiosInit = axios.create({
+  baseURL: API_BASE_URL,
+  timeout: 5000,
+});
+
+axiosInit.interceptors.response.use(
+  (config) => {
+    const token = sessionStorage.getItem("auth_token");
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+export default axiosInit;
+
+// export const useQueryFn = (url, options) => {
+//   const { accessToken } = useAuth();
+
+//   return useQuery(
+//     url,
+//     async () => {
+//       const { data } = await axiosInit.get(url, {
+//         headers: {
+//           Authorization: `Bearer ${accessToken}`,
+//         },
+//       });
+
+//       return data;
 //     },
-//   });
+//     options
+//   );
 // };
 
-// // class useAxiosFetch {
-// //   constructor(url, queryType, method) {
-// //     this.url = url;
-// //     this.queryType = queryType;
-// //     this.method = method;
-// //   }
+// export const useMutationFn = (url, options) => {
+//   const { accessToken } = useAuth();
 
-// //   async get() {
-// //     const { data, error, isPending, isError, isSuccess } = useMutation({
-// //       mutationFn: async () => {
-// //         return axios.get(this.url);
-// //       },
-// //     });
+//   return useMutation(
+//     url,
+//     async () => {
+//       const { data } = await axiosInit.get(url, {
+//         headers: {
+//           Authorization: `Bearer ${accessToken}`,
+//         },
+//       });
 
-// //     return { data, error, isPending, isError, isSuccess };
-// //   }
-// // }
-
-// export default useAxiosFetchFn;
+//       return data;
+//     },
+//     options
+//   );
+// };

@@ -1,27 +1,32 @@
-import { useEffect } from "react";
-import { useNavigate, useRoutes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import publicRoute from "./public";
 import { useAuth } from "@/hooks/useAuth";
 import adminRoute from "./private/admin";
 import staffRoute from "./private/staff";
 import AccountType from "@/utils/authRoleConstant";
+import NotAuthorized from "./private/unauthorized";
 
-const Routes = () => {
-  const navigate = useNavigate();
+const AppRoutes = () => {
   const { userAuth } = useAuth();
 
-  useEffect(() => {
-    if (userAuth.authenticated) navigate("/");
-    else navigate("/auth");
+  const commonRoutes = [
+    {
+      path: "/not-authorized",
+      element: <NotAuthorized />,
+    },
+    publicRoute,
+  ];
 
-    // eslint-disable-next-line
-  }, []);
+  const routes = createBrowserRouter([
+    ...commonRoutes,
+    ...(userAuth?.authenticated
+      ? userAuth?.role === AccountType.Admin
+        ? adminRoute
+        : staffRoute
+      : publicRoute),
+  ]);
 
-  const privateRoute =
-    userAuth.accountType === AccountType.Admin ? adminRoute : staffRoute;
-
-  const router = userAuth.authenticated ? privateRoute : publicRoute;
-  return useRoutes(router);
+  return <RouterProvider router={routes} />;
 };
 
-export default Routes;
+export default AppRoutes;

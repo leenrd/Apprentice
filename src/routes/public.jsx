@@ -1,10 +1,10 @@
-import FormLogIn from "@/components/(auth-outlets)/FormLogIn";
-import FormSignUp from "@/components/(auth-outlets)/FormSignUp";
+import FormLogIn from "@/components/(auth)/FormLogIn";
+import FormSignUp from "@/components/(auth)/FormSignUp";
 import AuthPage from "@/pages/public/AuthPage";
 
 const publicRoute = [
   {
-    path: "/auth",
+    path: "/",
     element: <AuthPage />,
     children: [
       {

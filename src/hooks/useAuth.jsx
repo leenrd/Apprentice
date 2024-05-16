@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import PropTypes from "prop-types";
-import AccountType from "@/utils/authRoleConstant";
+import { jwtDecode } from "jwt-decode";
+import { useEffect } from "react";
 
 const AuthContext = createContext(null);
 
@@ -11,25 +12,38 @@ export const useAuth = () => {
 export function AuthContextProvider({ children }) {
   const [userAuth, setUserAuth] = useState({
     authenticated: false,
-    accountType: AccountType.Admin,
+    user_id: null,
+    role: null,
+    username: null,
     auth_token: null,
   });
 
-  const login = (authData) => {
+  const login = (auth_token) => {
+    const decoded = jwtDecode(auth_token);
+    sessionStorage.setItem("auth_token", auth_token);
     setUserAuth({
       authenticated: true,
-      accountType: authData.accountType,
-      auth_token: authData.auth_token,
+      user_id: decoded.user.id,
+      role: decoded.user.role,
+      username: decoded.user.username,
+      auth_token,
     });
   };
 
   const logout = () => {
+    sessionStorage.removeItem("auth_token");
     setUserAuth({
-      ...userAuth,
       authenticated: false,
+      user_id: null,
+      role: null,
+      username: null,
       auth_token: null,
     });
   };
+
+  useEffect(() => {
+    console.log(userAuth);
+  }, [userAuth]);
 
   return (
     <AuthContext.Provider value={{ userAuth, setUserAuth, login, logout }}>

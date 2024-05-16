@@ -17,7 +17,7 @@ const router = express.Router();
 router.post(
   "/login",
   LOGIN_VALIDATOR(LOGIN_SCHEMA),
-  LOGIN_LIMITER,
+  // LOGIN_LIMITER,
   async (req: Request, res: Response) => {
     const { username, password } = req.body;
 

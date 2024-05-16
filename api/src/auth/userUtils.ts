@@ -21,7 +21,7 @@ export const accessToken = (user: User | any) => {
     {
       user: {
         id: user.id,
-        name: user.name,
+        username: user.username,
         role: user.role,
       },
     },

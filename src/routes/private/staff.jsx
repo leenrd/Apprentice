@@ -1,18 +1,23 @@
 import Dashboard from "@/pages/private/staff/outlets/Dashboard";
 import Logs from "@/pages/private/staff/outlets/Logs";
 import RootPage from "@pages/private/staff/RootPage";
+import RouteHook from "@/components/(auth)/RouteHook";
 
 const staffRoute = [
   {
     path: "/",
-    element: <RootPage />,
+    element: (
+      <RouteHook allowedRoles={["staff"]}>
+        <RootPage />
+      </RouteHook>
+    ),
     children: [
       {
         index: true,
         element: <Dashboard />,
       },
       {
-        path: "/logs",
+        path: "logs",
         element: <Logs />,
       },
     ],

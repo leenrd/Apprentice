@@ -127,7 +127,7 @@ const FormSignUp = () => {
       <div className="flex justify-center w-[100%]">
         <p className="text-xs text-gray-600 mt-4 text-center">
           Already have an account?
-          <Link to="/auth" className="underline cursor-pointer ml-1">
+          <Link to="/" className="underline cursor-pointer ml-1">
             Log in
           </Link>
         </p>

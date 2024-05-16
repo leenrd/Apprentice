@@ -3,26 +3,31 @@ import Logs from "@/pages/private/admin/outlets/Logs";
 import Users from "@/pages/private/admin/outlets/Users";
 import Settings from "@/pages/private/admin/Settings";
 import RootPage from "@pages/private/admin/RootPage";
+import RouteHook from "@/components/(auth)/RouteHook";
 
 const adminRoute = [
   {
     path: "/",
-    element: <RootPage />,
+    element: (
+      <RouteHook allowedRoles={["admin"]}>
+        <RootPage />
+      </RouteHook>
+    ),
     children: [
       {
         index: true,
         element: <Dashboard />,
       },
       {
-        path: "/users",
+        path: "users",
         element: <Users />,
       },
       {
-        path: "/logs",
+        path: "logs",
         element: <Logs />,
       },
       {
-        path: "/settings",
+        path: "settings",
         element: <Settings />,
       },
     ],

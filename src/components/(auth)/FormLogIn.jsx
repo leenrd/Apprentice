@@ -3,12 +3,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 import Modal from "@/components/ui/Modal-portal";
-import { Button, TextInput } from "@tremor/react";
+import { Button, TextInput, Callout } from "@tremor/react";
 import useToggle from "@/hooks/useToggle";
 import { loginSchema } from "@/utils/validationSchemas";
 import { useMutation } from "@tanstack/react-query";
-import { useLoginHelperFn } from "@/features/auth/login-client";
+import { LoginHelperFn } from "@/features/auth/auth-client";
 import { useAuth } from "@/hooks/useAuth";
+import { RiAlarmWarningLine } from "@remixicon/react";
+import { useState } from "react";
 
 const FormLogIn = () => {
   const [value, setToggle] = useToggle(false);
@@ -59,7 +61,9 @@ const FormLogIn = () => {
 export default FormLogIn;
 
 const Form = () => {
-  const { setUserAuth } = useAuth();
+  const [errFromServer, setErrFromServer] = useState(null);
+  const { login } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -70,31 +74,33 @@ const Form = () => {
   });
 
   const logInMutation = useMutation({
-    mutationFn: useLoginHelperFn,
-    onSuccess: () => {
-      console.log("Logged in");
-      setUserAuth(
-        (prev) =>
-          (prev = {
-            authenticated: true,
-            ...prev,
-          })
-      );
+    mutationFn: LoginHelperFn,
+    onSuccess: (data) => {
+      setErrFromServer(null);
+      sessionStorage.setItem("auth_token", data.data);
+      login(data.data);
     },
     onError: (error) => {
-      console.error(error);
+      setErrFromServer(error.response.data.desc);
     },
   });
 
   const onSubmit = async (data) => {
     console.log(data);
     await logInMutation.mutateAsync(data);
-    await new Promise((thing) => setTimeout(thing, 3000));
     reset();
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-[100%]">
+      {!errFromServer ? null : (
+        <Callout
+          className="my-5"
+          title={errFromServer}
+          icon={RiAlarmWarningLine}
+          color="rose"
+        />
+      )}
       <div className=" mb-2">
         <TextInput
           placeholder="Username"

@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
 import { verifyAccessToken } from "@/auth/userUtils";
 
-const TOKEN_VERIFIER = (req: Request, res: Response, next: NextFunction) => {
+const TOKEN_VALIDATOR = (req: Request, res: Response, next: NextFunction) => {
   const AuthHeader = req.headers["authorization" || "Authorization"];
 
   if (!AuthHeader?.startsWith("Bearer ")) {
@@ -14,4 +14,4 @@ const TOKEN_VERIFIER = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-export default TOKEN_VERIFIER;
+export default TOKEN_VALIDATOR;

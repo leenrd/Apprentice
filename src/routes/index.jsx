@@ -14,7 +14,6 @@ const AppRoutes = () => {
       path: "/not-authorized",
       element: <NotAuthorized />,
     },
-    publicRoute,
   ];
 
   const routes = createBrowserRouter([

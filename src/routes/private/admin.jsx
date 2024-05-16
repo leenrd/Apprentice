@@ -20,15 +20,27 @@ const adminRoute = [
       },
       {
         path: "users",
-        element: <Users />,
+        element: (
+          <RouteHook allowedRoles={["admin"]}>
+            <Users />
+          </RouteHook>
+        ),
       },
       {
         path: "logs",
-        element: <Logs />,
+        element: (
+          <RouteHook allowedRoles={["admin"]}>
+            <Logs />
+          </RouteHook>
+        ),
       },
       {
         path: "settings",
-        element: <Settings />,
+        element: (
+          <RouteHook allowedRoles={["admin"]}>
+            <Settings />
+          </RouteHook>
+        ),
       },
     ],
   },

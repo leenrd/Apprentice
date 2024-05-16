@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
-import { TextInput, Select, SelectItem, Button } from "@tremor/react";
+import { TextInput, Select, SelectItem, Button, Callout } from "@tremor/react";
 import { useController, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@tanstack/react-query";
 import { signUpSchema } from "@/utils/validationSchemas";
+import { RiAlarmWarningLine } from "@remixicon/react";
+import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { RegisterHelperFn } from "@/features/auth/auth-client";
+import { useNavigate } from "react-router-dom";
 
 const FormSignUp = () => {
+  const [errFromServer, setErrFromServer] = useState(null);
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const {
     control,
     register,
@@ -17,9 +27,22 @@ const FormSignUp = () => {
 
   const { field } = useController({ control, name: "role" });
 
+  const SignUpMutation = useMutation({
+    mutationFn: RegisterHelperFn,
+    onSuccess: (data) => {
+      setErrFromServer(null);
+      sessionStorage.setItem("auth_token", data.data);
+      login(data.data);
+      navigate("/", { replace: true });
+    },
+    onError: (error) => {
+      setErrFromServer(error.response.data.desc);
+    },
+  });
+
   const onSubmit = async (data) => {
     console.log(data);
-    await new Promise((thing) => setTimeout(thing, 3000));
+    await SignUpMutation.mutateAsync(data);
     reset();
   };
 
@@ -42,6 +65,14 @@ const FormSignUp = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-2 items-center w-[45%]"
       >
+        {!errFromServer ? null : (
+          <Callout
+            className="my-5 w-full"
+            title={errFromServer}
+            icon={RiAlarmWarningLine}
+            color="rose"
+          />
+        )}
         <div className="w-[100%]">
           <label className="text-sm font-normal">User Information</label>
           <div>

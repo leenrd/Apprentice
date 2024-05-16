@@ -67,14 +67,6 @@ router.post("/refresh", async (req: Request, res: Response) => {
 });
 
 router.post("/logout", async (req: Request, res: Response) => {
-  const { ref_token } = req.cookies;
-
-  if (!ref_token)
-    return new ApiResponse(res).error(
-      HTTP_STATUS.UNAUTHORIZED,
-      "No refresh token found"
-    );
-
   res.clearCookie("ref_token", {
     httpOnly: true,
     maxAge: 86400000,

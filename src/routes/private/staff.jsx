@@ -18,7 +18,11 @@ const staffRoute = [
       },
       {
         path: "logs",
-        element: <Logs />,
+        element: (
+          <RouteHook allowedRoles={["staff"]}>
+            <Logs />
+          </RouteHook>
+        ),
       },
     ],
   },

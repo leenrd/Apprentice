@@ -1,18 +1,14 @@
 import axios from "axios";
-import { useMutation } from "@tanstack/react-query";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const useLoginUser = async () => {
-  const { data } = useMutation({
-    mutationFn: async () => {
-      const { data } = axios.post(`${API_BASE_URL}/auth/login`);
-      return data;
-    },
-  });
-
-  return data;
+export const LogoutHelperFn = () => {
+  return axios.post(`${API_BASE_URL}/auth/logout`);
 };
 
 export const LoginHelperFn = (data) => {
   return axios.post(`${API_BASE_URL}/auth/login`, data);
+};
+
+export const RegisterHelperFn = (data) => {
+  return axios.post(`${API_BASE_URL}/user/signup`, data);
 };

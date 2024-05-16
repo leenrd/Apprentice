@@ -7,7 +7,7 @@ const RouteHook = ({ children, allowedRoles }) => {
   const { userAuth } = useAuth();
 
   if (!userAuth.authenticated) {
-    return <Navigate to="/auth" state={{ from: location }} replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
 
   if (!allowedRoles.includes(userAuth.role)) {

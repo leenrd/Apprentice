@@ -2,6 +2,8 @@ import Dashboard from "@/pages/private/staff/outlets/Dashboard";
 import Logs from "@/pages/private/staff/outlets/Logs";
 import RootPage from "@pages/private/staff/RootPage";
 import RouteHook from "@/components/(auth)/RouteHook";
+import StockAlerts from "@/pages/private/staff/outlets/StockAlerts";
+import Items from "@/pages/private/staff/outlets/Items";
 
 const staffRoute = [
   {
@@ -21,6 +23,22 @@ const staffRoute = [
         element: (
           <RouteHook allowedRoles={["staff"]}>
             <Logs />
+          </RouteHook>
+        ),
+      },
+      {
+        path: "stock-alerts",
+        element: (
+          <RouteHook allowedRoles={["staff"]}>
+            <StockAlerts />
+          </RouteHook>
+        ),
+      },
+      {
+        path: "items",
+        element: (
+          <RouteHook allowedRoles={["staff"]}>
+            <Items />
           </RouteHook>
         ),
       },

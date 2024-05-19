@@ -5,13 +5,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
 import { signUpSchema } from "@/utils/validationSchemas";
 import { RiAlarmWarningLine } from "@remixicon/react";
-import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
-import { RegisterHelperFn } from "@/features/auth/auth-client";
+import { RegisterHelperFn } from "@/features/auth/auth-client-helpers";
 import { useNavigate } from "react-router-dom";
+import useServerErrors from "@/hooks/useServerErrors";
 
 const FormSignUp = () => {
-  const [errFromServer, setErrFromServer] = useState(null);
+  const [errFromServer, setErrFromServer] = useServerErrors();
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -28,10 +28,10 @@ const FormSignUp = () => {
   const { field } = useController({ control, name: "role" });
 
   const SignUpMutation = useMutation({
+    mutationKey: ["accessToken"],
     mutationFn: RegisterHelperFn,
     onSuccess: (data) => {
       setErrFromServer(null);
-      sessionStorage.setItem("auth_token", data.data);
       login(data.data);
       navigate("/", { replace: true });
     },

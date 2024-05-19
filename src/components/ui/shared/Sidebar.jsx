@@ -11,11 +11,33 @@ import {
   LogOut,
   BadgeAlert,
   Box,
+  ChevronDown,
+  ChevronUp,
+  Warehouse,
 } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
-import { LogoutHelperFn } from "@/features/auth/auth-client";
+import { LogoutHelperFn } from "@/features/auth/auth-client-helpers";
 import useToggle from "@/hooks/useToggle";
 import { Button, Dialog, DialogPanel } from "@tremor/react";
+import { Children, useState } from "react";
+
+const data_warehouse = [
+  { id: "1", name: "Warehouse 1" },
+  { id: "2", name: "Warehouse x" },
+  { id: "3", name: "Warehouse x" },
+  { id: "4", name: "Warehouse x" },
+  { id: "5", name: "Warehouse x" },
+  { id: "5", name: "Warehouse x" },
+  { id: "5", name: "Warehouse x" },
+  { id: "5", name: "Warehouse x" },
+  { id: "5", name: "Warehouse x" },
+  { id: "5", name: "Warehouse x" },
+  { id: "5", name: "Warehouse x" },
+  { id: "5", name: "Warehouse x" },
+  { id: "5", name: "Warehouse x" },
+  { id: "5", name: "Warehouse x" },
+  { id: "5", name: "Warehouse x" },
+];
 
 const Sidebar = () => {
   const { userAuth, logout } = useAuth();
@@ -38,7 +60,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="w-60 h-screen bg-white text-black py-8 px-4 border-r-slate border-r-2 z-1 fixed">
+    <aside className="w-60 h-screen bg-white text-black py-8 px-4 border-r-slate border-r-2 z-1 fixed overflow-y-scroll no-scrollbar">
       {!value ? null : (
         <DialogLogout
           toggle={value}
@@ -46,7 +68,11 @@ const Sidebar = () => {
           handleSubmit={handleSubmit}
         />
       )}
-      <div className="flex flex-col justify-between h-[100%]">
+      <div
+        className={`flex flex-col gap-10 justify-between ${
+          userAuth.role === AccountType.Admin ? "max-h-fit" : "h-full"
+        }`}
+      >
         <div>
           <h1 className="font-bold text-md md:text-lg lg:text-xl  mb-5 pl-3">
             Manage
@@ -68,6 +94,18 @@ const Sidebar = () => {
             <h1 className="font-bold text-md md:text-lg lg:text-xl  mb-5 pl-3">
               Resource
             </h1>
+            <FlattenTabs visibleItemCount={4}>
+              {data_warehouse.map((item) => {
+                return (
+                  <Tab
+                    label={item.name}
+                    key={item.id}
+                    Icon={Warehouse}
+                    to={`/warehouse?list=${item.id}`}
+                  />
+                );
+              })}
+            </FlattenTabs>
           </div>
         ) : null}
         <div className="mb-4">
@@ -88,15 +126,50 @@ const Sidebar = () => {
   );
 };
 
+const FlattenTabs = ({
+  children,
+  visibleItemCount = Number.POSITIVE_INFINITY,
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const childrenArray = Children.toArray(children).flat();
+  const showExpandButton = childrenArray.length > visibleItemCount;
+  const visibleChildren = isExpanded
+    ? childrenArray
+    : childrenArray.slice(0, visibleItemCount);
+  const ButtonIcon = isExpanded ? ChevronUp : ChevronDown;
+
+  return (
+    <>
+      <div>{visibleChildren}</div>
+      {showExpandButton && (
+        <button
+          onClick={() => setIsExpanded((e) => !e)}
+          className="rounded-md text-md font-medium active:scale-95 text-black py-2 px-3
+  hover:bg-slate-100 active:text-semibold w-[100%] text-start flex items-center gap-2
+  transition-transform duration-100 mb-1"
+        >
+          <ButtonIcon className="h-6 w-6" />
+          <div>{isExpanded ? "Show Less" : "Show More"}</div>
+        </button>
+      )}
+    </>
+  );
+};
+
+FlattenTabs.propTypes = {
+  children: PropTypes.elementType,
+  visibleItemCount: PropTypes.integer,
+};
+
 export function DialogLogout({ toggle, setToggle, handleSubmit }) {
   return (
     <>
       <Dialog open={toggle} onClose={(val) => setToggle(val)} static={true}>
         <DialogPanel>
-          <h1 className="text-2xl font-bold text-tremor-content-strong dark:text-dark-tremor-content-strong">
+          <h1 className="text-2xl font-bold px-2 pt-2 text-tremor-content-strong dark:text-dark-tremor-content-strong tracking-tight">
             Are you sure?
           </h1>
-          <p className="mt-2 leading-6 text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+          <p className="mt-2 leading-6 px-2 text-tremor-default text-tremor-content dark:text-dark-tremor-content">
             You&apos;re about to leave. You have to log in again for your next
             session.
           </p>

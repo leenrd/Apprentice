@@ -62,8 +62,8 @@ router.post("/refresh", async (req: Request, res: Response) => {
       "No refresh token found"
     );
 
-  const refreshToken = getNewAccessTByRefreshT(res, ref_token);
-  return new ApiResponse(res).send(refreshToken);
+  const newAccessToken = getNewAccessTByRefreshT(res, ref_token);
+  return new ApiResponse(res).send(newAccessToken);
 });
 
 router.post("/logout", async (req: Request, res: Response) => {

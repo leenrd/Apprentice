@@ -7,10 +7,10 @@ import { Button, TextInput, Callout } from "@tremor/react";
 import useToggle from "@/hooks/useToggle";
 import { loginSchema } from "@/utils/validationSchemas";
 import { useMutation } from "@tanstack/react-query";
-import { LoginHelperFn } from "@/features/auth/auth-client";
+import { LoginHelperFn } from "@/features/auth/auth-client-helpers";
 import { useAuth } from "@/hooks/useAuth";
 import { RiAlarmWarningLine } from "@remixicon/react";
-import { useState } from "react";
+import useServerErrors from "@/hooks/useServerErrors";
 
 const FormLogIn = () => {
   const [value, setToggle] = useToggle(false);
@@ -61,7 +61,7 @@ const FormLogIn = () => {
 export default FormLogIn;
 
 const Form = () => {
-  const [errFromServer, setErrFromServer] = useState(null);
+  const [errFromServer, setErrFromServer] = useServerErrors();
   const { login } = useAuth();
 
   const {
@@ -74,10 +74,11 @@ const Form = () => {
   });
 
   const logInMutation = useMutation({
+    mutationKey: ["accessToken"],
     mutationFn: LoginHelperFn,
+    staleTime: 600000,
     onSuccess: (data) => {
       setErrFromServer(null);
-      sessionStorage.setItem("auth_token", data.data);
       login(data.data);
     },
     onError: (error) => {
@@ -86,7 +87,6 @@ const Form = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     await logInMutation.mutateAsync(data);
     reset();
   };

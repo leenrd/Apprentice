@@ -1,9 +1,9 @@
-import Dashboard from "@/pages/private/staff/outlets/Dashboard";
-import Logs from "@/pages/private/staff/outlets/Logs";
-import RootPage from "@pages/private/staff/RootPage";
+import Dashboard from "@/pages/staff/outlets/Dashboard";
+import Logs from "@/pages/staff/outlets/Logs";
+import RootPage from "@pages/staff/RootPage";
 import RouteHook from "@/components/(auth)/RouteHook";
-import StockAlerts from "@/pages/private/staff/outlets/StockAlerts";
-import Items from "@/pages/private/staff/outlets/Items";
+import StockAlerts from "@/pages/staff/outlets/StockAlerts";
+import Items from "@/pages/staff/outlets/Items";
 
 const staffRoute = [
   {

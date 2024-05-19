@@ -21,7 +21,10 @@ const Banner = ({ toggle }) => {
       <span className="flex justify-end items-center px-8">
         <X
           className="h-4 w-4 cursor-pointer text-white"
-          onClick={() => toggle()}
+          onClick={() => {
+            toggle();
+            sessionStorage.setItem("isBannerClosed", "true");
+          }}
         />
       </span>
     </div>

@@ -26,7 +26,7 @@ router.post(
       if (user)
         return new ApiResponse(res).error(
           HTTP_STATUS.BAD_REQUEST,
-          "User already exists"
+          "Username already exists"
         );
 
       const newUser: UserT = await User.create({

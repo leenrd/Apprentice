@@ -1,6 +1,6 @@
 import FormLogIn from "@/components/(auth)/FormLogIn";
 import FormSignUp from "@/components/(auth)/FormSignUp";
-import AuthPage from "@/pages/public/AuthPage";
+import AuthPage from "@/pages/AuthPage";
 
 const publicRoute = [
   {

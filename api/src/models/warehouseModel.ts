@@ -20,6 +20,7 @@ const WarehouseSchema = new Schema<WarehouseType>({
   },
   status: {
     type: String,
+    enum: ["operational", "downtime", "maintenance"],
     required: true,
   },
   manager: {

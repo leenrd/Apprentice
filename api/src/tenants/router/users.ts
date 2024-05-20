@@ -6,12 +6,14 @@ import {
 } from "@/middlewares/validations";
 import { SIGNUP_SCHEMA, UPDATE_USER_SCHEMA } from "@/utils/validationSchema";
 import TOKEN_VALIDATOR from "@/middlewares/tokenValidator";
+import { ADMIN_ROLE_GATEWAY } from "@/middlewares/roleValidator";
 
 const { getAllUsers, getUser, postUser, deleteUser, updateUser } = userHandlers;
 const router = express.Router();
 // @Desc: User management routes for admin
 
-router.use(TOKEN_VALIDATOR);
+// router.use(TOKEN_VALIDATOR);
+// router.use(ADMIN_ROLE_GATEWAY);
 
 /**
  * @openapi

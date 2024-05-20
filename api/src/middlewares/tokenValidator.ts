@@ -11,7 +11,7 @@ const TOKEN_VALIDATOR = (req: Request, res: Response, next: NextFunction) => {
 
   const access_token = AuthHeader.split(" ")[1];
   verifyAccessToken(req, res, access_token);
-  next();
+  return next();
 };
 
 export default TOKEN_VALIDATOR;

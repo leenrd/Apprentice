@@ -2,12 +2,14 @@ import express, { Response } from "express";
 import bodyParser from "body-parser";
 import userRoute from "@/auth/userRegister";
 import authRoute from "@/auth/userAuth";
-import userHandler from "@/tenants/router/users";
 import swaggerOptions from "@/utils/swaggerOptions";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+
+import userHandler from "@/tenants/router/users";
+import warehouseHandler from "@/tenants/router/warehouse";
 
 // @Global: Config
 require("dotenv").config();
@@ -17,7 +19,7 @@ const swaggerSpec = swaggerJSDoc(swaggerOptions);
 server.use(
   cors({
     origin: "http://localhost:5173",
-    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+    credentials: true,
   })
 );
 
@@ -31,6 +33,7 @@ server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // @Access: Private
 server.use("/api", userHandler);
+server.use("/api", warehouseHandler);
 
 // @Desc: Auth routes
 server.use("/user", userRoute);

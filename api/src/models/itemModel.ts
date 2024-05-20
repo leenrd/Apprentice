@@ -13,6 +13,7 @@ interface Item {
   quantityPerPurchaseUnit: number;
   costPerPurchaseUnit: number;
   costPerSingleItem: number;
+  active: boolean;
   warehouse: Schema.Types.ObjectId;
 }
 
@@ -42,6 +43,10 @@ const ItemSchema = new Schema<Item>(
     costPerSingleItem: {
       type: Number,
       required: true,
+    },
+    active: {
+      type: Boolean,
+      default: true,
     },
     warehouse: {
       type: Schema.Types.ObjectId,

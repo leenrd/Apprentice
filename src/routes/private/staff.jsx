@@ -1,18 +1,15 @@
 import Dashboard from "@/pages/staff/outlets/Dashboard";
 import Logs from "@/pages/staff/outlets/Logs";
 import RootPage from "@pages/staff/RootPage";
-import RouteHook from "@/components/(auth)/RouteHook";
 import StockAlerts from "@/pages/staff/outlets/StockAlerts";
 import Items from "@/pages/staff/outlets/Items";
+import ErrorPage from "@/components/ui/shared/ErrorPage";
 
 const staffRoute = [
   {
     path: "/",
-    element: (
-      <RouteHook allowedRoles={["staff"]}>
-        <RootPage />
-      </RouteHook>
-    ),
+    errorElement: <ErrorPage />,
+    element: <RootPage />,
     children: [
       {
         index: true,
@@ -20,27 +17,15 @@ const staffRoute = [
       },
       {
         path: "logs",
-        element: (
-          <RouteHook allowedRoles={["staff"]}>
-            <Logs />
-          </RouteHook>
-        ),
+        element: <Logs />,
       },
       {
         path: "stock-alerts",
-        element: (
-          <RouteHook allowedRoles={["staff"]}>
-            <StockAlerts />
-          </RouteHook>
-        ),
+        element: <StockAlerts />,
       },
       {
         path: "items",
-        element: (
-          <RouteHook allowedRoles={["staff"]}>
-            <Items />
-          </RouteHook>
-        ),
+        element: <Items />,
       },
     ],
   },

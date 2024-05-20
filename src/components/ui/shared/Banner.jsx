@@ -23,7 +23,7 @@ const Banner = ({ toggle }) => {
           className="h-4 w-4 cursor-pointer text-white"
           onClick={() => {
             toggle();
-            sessionStorage.setItem("isBannerClosed", "true");
+            localStorage.setItem("isBannerClosed", "true");
           }}
         />
       </span>

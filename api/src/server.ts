@@ -7,13 +7,21 @@ import swaggerOptions from "@/utils/swaggerOptions";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 // @Global: Config
 require("dotenv").config();
 const server = express();
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
-server.use(cors());
+server.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  })
+);
+
+server.use(cookieParser());
 server.use(bodyParser.json());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));

@@ -53,7 +53,7 @@ router.post(
   }
 );
 
-router.post("/refresh", async (req: Request, res: Response) => {
+router.get("/refresh", async (req: Request, res: Response) => {
   const { ref_token } = req.cookies;
 
   if (!ref_token)

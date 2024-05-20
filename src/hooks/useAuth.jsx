@@ -1,8 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { jwtDecode } from "jwt-decode";
 import queryProvider from "@/utils/queryProvider";
-
 const AuthContext = createContext(null);
 
 export const useAuth = () => {
@@ -17,9 +16,18 @@ export function AuthContextProvider({ children }) {
     username: null,
   });
 
-  const login = (auth_token) => {
-    const decoded = jwtDecode(auth_token);
-    queryProvider.setQueryData("accessToken", auth_token);
+  useEffect(() => {
+    const logged = localStorage.getItem("isLoggedIn");
+    if (logged) {
+      const accessToken = JSON.parse(logged);
+      login(accessToken);
+    }
+  }, []);
+
+  const login = (accessToken) => {
+    const decoded = jwtDecode(accessToken);
+    localStorage.setItem("isLoggedIn", JSON.stringify(accessToken));
+    queryProvider.setQueryData("accessToken", accessToken);
     setUserAuth({
       authenticated: true,
       user_id: decoded.user.id,
@@ -30,6 +38,8 @@ export function AuthContextProvider({ children }) {
 
   const logout = () => {
     queryProvider.invalidateQueries();
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("isBannerClosed");
     setUserAuth({
       authenticated: false,
       user_id: null,

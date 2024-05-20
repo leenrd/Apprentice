@@ -4,7 +4,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 const callAPI = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 5000,
+  withCredentials: true,
 });
 
 callAPI.interceptors.response.use(
@@ -22,17 +22,24 @@ callAPI.interceptors.response.use(
   }
 );
 
-// @Desc: interceptor to refresh token if expired
 callAPI.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
+
+    if (originalRequest.url.includes("/auth/login")) {
+      return Promise.reject(error);
+    }
+
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
+
       try {
-        await queryProvider.fetchQuery("refreshToken"); // @Desc: Trigger refresh token fetch
-        const accessToken = queryProvider.getQueryData("accessToken");
-        originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
+        const response = await callAPI.get("/auth/refresh");
+        const newAccessToken = response.data;
+
+        queryProvider.setQueryData("accessToken", newAccessToken);
+        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
         return callAPI(originalRequest);
       } catch (err) {
         console.error("Refresh token failed", err);
@@ -42,14 +49,5 @@ callAPI.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-export const refreshAccessToken = async () => {
-  const response = await callAPI.post(
-    `${API_BASE_URL}/auth/refresh-token`,
-    {},
-    { withCredentials: true }
-  );
-  return response.data;
-};
 
 export default callAPI;

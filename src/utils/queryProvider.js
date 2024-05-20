@@ -5,9 +5,7 @@ const queryProvider = new QueryClient({
     queries: {
       retry: 1,
       refetchOnWindowFocus: false,
-    },
-    mutations: {
-      retry: 1,
+      staleTime: 300000,
     },
   },
 });

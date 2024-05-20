@@ -5,6 +5,7 @@ import adminRoute from "./private/admin";
 import staffRoute from "./private/staff";
 import AccountType from "@/utils/authRoleConstant";
 import NotAuthorized from "./private/unauthorized";
+import ErrorPage from "@/components/ui/shared/ErrorPage";
 
 const AppRoutes = () => {
   const { userAuth } = useAuth();
@@ -13,6 +14,10 @@ const AppRoutes = () => {
     {
       path: "/not-authorized",
       element: <NotAuthorized />,
+    },
+    {
+      path: "*",
+      element: <ErrorPage />,
     },
   ];
 

@@ -87,7 +87,11 @@ const Sidebar = () => {
               <Tab label="Items" Icon={Box} to="/items" />
             </>
           ) : null}
-          <Tab label="Logs" Icon={FileClock} to="/logs" />
+          <Tab
+            label="Logs"
+            Icon={FileClock}
+            to={userAuth.role === AccountType.Admin ? "/global-logs" : "/logs"}
+          />
         </div>
         {userAuth.role === AccountType.Admin ? (
           <div>
@@ -157,8 +161,8 @@ const FlattenTabs = ({
 };
 
 FlattenTabs.propTypes = {
-  children: PropTypes.elementType,
-  visibleItemCount: PropTypes.integer,
+  children: PropTypes.arrayOf(PropTypes.element),
+  visibleItemCount: PropTypes.number,
 };
 
 export function DialogLogout({ toggle, setToggle, handleSubmit }) {

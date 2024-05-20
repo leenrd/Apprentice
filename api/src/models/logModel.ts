@@ -2,20 +2,25 @@ import { Schema, model } from "mongoose";
 
 export interface LogT {
   _id: string;
+  from: string;
   message: string;
-  level: string;
+  type: string;
 }
 
-const logSchema = new Schema(
+const logSchema = new Schema<LogT>(
   {
+    from: {
+      type: String,
+      required: true,
+    },
     message: {
       type: String,
       required: true,
     },
-    level: {
+    type: {
       type: String,
-      enum: ["info", "error"],
-      default: "info",
+      enum: ["added", "removed", "updated"],
+      required: true,
     },
   },
   { timestamps: true }

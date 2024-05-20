@@ -3,16 +3,13 @@ import Logs from "@/pages/admin/outlets/Logs";
 import Users from "@/pages/admin/outlets/Users";
 import Settings from "@/pages/admin/Settings";
 import RootPage from "@pages/admin/RootPage";
-import RouteHook from "@/components/(auth)/RouteHook";
+import ErrorPage from "@/components/ui/shared/ErrorPage";
 
 const adminRoute = [
   {
     path: "/",
-    element: (
-      <RouteHook allowedRoles={["admin"]}>
-        <RootPage />
-      </RouteHook>
-    ),
+    errorElement: <ErrorPage />,
+    element: <RootPage />,
     children: [
       {
         index: true,
@@ -20,27 +17,15 @@ const adminRoute = [
       },
       {
         path: "users",
-        element: (
-          <RouteHook allowedRoles={["admin"]}>
-            <Users />
-          </RouteHook>
-        ),
+        element: <Users />,
       },
       {
-        path: "logs",
-        element: (
-          <RouteHook allowedRoles={["admin"]}>
-            <Logs />
-          </RouteHook>
-        ),
+        path: "global-logs",
+        element: <Logs />,
       },
       {
         path: "settings",
-        element: (
-          <RouteHook allowedRoles={["admin"]}>
-            <Settings />
-          </RouteHook>
-        ),
+        element: <Settings />,
       },
     ],
   },

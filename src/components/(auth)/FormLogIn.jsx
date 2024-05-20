@@ -28,7 +28,7 @@ const FormLogIn = () => {
         <p className="font-bold text-3xl">Apprentice.</p>
       </div>
       <div className="flex flex-col items-center w-[45%]">
-        <Form />
+        <Form testAccModal={value} toggleTestAccModal={setToggle} />
         <Button
           variant="light"
           className="hover:underline w-[100%]"
@@ -46,13 +46,6 @@ const FormLogIn = () => {
         >
           Create account
         </Link>
-        {value ? (
-          <Modal>
-            <div>
-              <TestAccModal onClose={setToggle} />
-            </div>
-          </Modal>
-        ) : null}
       </div>
     </>
   );
@@ -60,7 +53,7 @@ const FormLogIn = () => {
 
 export default FormLogIn;
 
-const Form = () => {
+const Form = ({ testAccModal, toggleTestAccModal }) => {
   const [errFromServer, setErrFromServer] = useServerErrors();
   const { login } = useAuth();
 
@@ -92,62 +85,101 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-[100%]">
-      {!errFromServer ? null : (
-        <Callout
-          className="my-5"
-          title={errFromServer}
-          icon={RiAlarmWarningLine}
-          color="rose"
-        />
-      )}
-      <div className=" mb-2">
-        <TextInput
-          placeholder="Username"
-          type="text"
-          className="pl-4 pr-6 py-1"
-          error={errors.username ? true : null}
-          {...register("username")}
-        />
-        {errors.username ? (
-          <p className="text-red-500 text-xs">Username is required</p>
-        ) : null}
-      </div>
-      <div className=" mb-8">
-        <TextInput
-          type="password"
-          className="pl-4 pr-6 py-1"
-          placeholder="Password"
-          error={errors.password ? true : null}
-          {...register("password")}
-        />
-        {errors.password ? (
-          <p className="text-red-500 text-xs">{`${
-            errors.password.message.charAt(0).toUpperCase() +
-            errors.password.message.slice(1)
-          }`}</p>
-        ) : null}
-      </div>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-[100%]">
+        {!errFromServer ? null : (
+          <Callout
+            className="my-5"
+            title={errFromServer}
+            icon={RiAlarmWarningLine}
+            color="rose"
+          />
+        )}
+        <div className=" mb-2">
+          <TextInput
+            placeholder="Username"
+            type="text"
+            className="pl-4 pr-6 py-1"
+            error={errors.username ? true : null}
+            {...register("username")}
+          />
+          {errors.username ? (
+            <p className="text-red-500 text-xs">Username is required</p>
+          ) : null}
+        </div>
+        <div className=" mb-8">
+          <TextInput
+            type="password"
+            className="pl-4 pr-6 py-1"
+            placeholder="Password"
+            error={errors.password ? true : null}
+            {...register("password")}
+          />
+          {errors.password ? (
+            <p className="text-red-500 text-xs">{`${
+              errors.password.message.charAt(0).toUpperCase() +
+              errors.password.message.slice(1)
+            }`}</p>
+          ) : null}
+        </div>
 
-      <Button
-        type="submit"
-        className="cursor-pointer font-semibold rounded-md text-sm active:scale-95  text-white px-6 py-2 w-[100%] bg-tremor-brand hover:bg-tremor-brand-emphasis mb-2"
-        loading={isSubmitting}
-      >
-        Log in
-      </Button>
-    </form>
+        <Button
+          type="submit"
+          className="cursor-pointer font-semibold rounded-md text-sm active:scale-95  text-white px-6 py-2 w-[100%] bg-tremor-brand hover:bg-tremor-brand-emphasis mb-2"
+          loading={isSubmitting}
+        >
+          Log in
+        </Button>
+      </form>
+      {testAccModal ? (
+        <Modal>
+          <div>
+            <TestAccModal
+              onClose={toggleTestAccModal}
+              onSubmission={onSubmit}
+            />
+          </div>
+        </Modal>
+      ) : null}
+    </>
   );
 };
 
-const TestAccModal = ({ onClose }) => {
+Form.propTypes = {
+  testAccModal: PropTypes.bool,
+  toggleTestAccModal: PropTypes.func,
+};
+
+const TestAccModal = ({ onClose, onSubmission }) => {
+  const TestData = {
+    staff: {
+      username: "userFromAdmin",
+      password: "wally090",
+    },
+    admin: {
+      username: "Leenrd",
+      password: "finalpass",
+    },
+  };
+
+  const handleTestAcc = (data) => {
+    onClose();
+    onSubmission(data);
+  };
+
   return (
     <>
       <div
-        className="inset-0 flex justify-center items-center transition-colors h-full w-full z-10 bg-black opacity-25 absolute"
+        className="inset-0 flex justify-center items-center transition-colors min-h-full w-full z-10 bg-black opacity-25 absolute"
         onClick={onClose}
       ></div>
-      <div className="p-5 z-50 bg-white rounded-md absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-5">
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+          handleTestAcc(TestData.staff);
+        }}
+        className="p-5 z-50 bg-white rounded-md absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-5"
+      >
         <div className="p-10 flex-col items-start justify-start border-[0.8px] border-slate-200 rounded-md  hover:border-tremor-brand transition-colors hover:shadow-lg cursor-pointer">
           <div className="flex gap-3 items-center mt-36">
             <div className="w-4 h-4 bg-tremor-brand rounded-full "></div>
@@ -157,7 +189,13 @@ const TestAccModal = ({ onClose }) => {
             Access to stocks, warehouse, and management.
           </p>
         </div>
-        <div className="p-10 flex-col items-start justify-start border-[0.8px] border-slate-200 rounded-md hover:border-tremor-brand transition-colors hover:shadow-lg cursor-pointer">
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+            handleTestAcc(TestData.admin);
+          }}
+          className="p-10 flex-col items-start justify-start border-[0.8px] border-slate-200 rounded-md hover:border-tremor-brand transition-colors hover:shadow-lg cursor-pointer"
+        >
           <div className="flex gap-3 items-center mt-36">
             <div className="w-4 h-4 bg-tremor-brand rounded-full "></div>
             <h2 className="font-bold text-xl mb-1">Admin</h2>
@@ -173,4 +211,5 @@ const TestAccModal = ({ onClose }) => {
 
 TestAccModal.propTypes = {
   onClose: PropTypes.func,
+  onSubmission: PropTypes.func,
 };

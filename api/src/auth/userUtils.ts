@@ -36,9 +36,7 @@ export const accessToken = (user: User | any) => {
 export const refreshToken = (user: User | any) => {
   const token = jwt.sign(
     {
-      user: {
-        id: user.id,
-      },
+      userId: user.id,
     },
     process.env.REFRESH_TOKEN as string,
     {
@@ -60,38 +58,32 @@ export const getNewAccessTByRefreshT = (
   res: Response,
   refresh_token: string
 ) => {
-  const payload = jwt.verify(
-    refresh_token,
-    process.env.REFRESH_TOKEN as string,
-    async (err, decoded: any) => {
-      if (err) {
-        return new ApiResponse(res).error(
-          HTTP_STATUS.FORBIDDEN,
-          "Invalid token"
-        );
-      }
-
-      const user = await User.findOne({ _id: decoded.user.id }).exec();
-
-      if (!user)
-        return new ApiResponse(res).error(
-          HTTP_STATUS.NOT_FOUND,
-          "User not found"
-        );
-
-      try {
+  try {
+    const decoded: any = jwt.verify(
+      refresh_token,
+      process.env.REFRESH_TOKEN as string
+    );
+    User.findOne({ _id: decoded.userId })
+      .exec()
+      .then((user) => {
+        if (!user) {
+          return new ApiResponse(res).error(
+            HTTP_STATUS.NOT_FOUND,
+            "User not found"
+          );
+        }
         const access_token = accessToken(user);
-
         return new ApiResponse(res).send(access_token);
-      } catch (error: any) {
+      })
+      .catch((error) => {
         return new ApiResponse(res).error(
           HTTP_STATUS.INTERNAL_SERVER_ERROR,
           error.message
         );
-      }
-    }
-  );
-  return payload;
+      });
+  } catch (err) {
+    return new ApiResponse(res).error(HTTP_STATUS.FORBIDDEN, "Invalid token");
+  }
 };
 
 declare global {

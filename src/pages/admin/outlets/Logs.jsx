@@ -8,6 +8,7 @@ const Logs = () => {
       <OutletHeader
         title={"Activity Logs"}
         subText={"Manage logs and generate reports."}
+        searchPlaceholder={"Search logs..."}
       />
       <OutletWidthShell>Logs content</OutletWidthShell>
       <OutletFooter />

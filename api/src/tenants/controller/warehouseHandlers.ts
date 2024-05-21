@@ -3,7 +3,6 @@ import ApiResponse, { HTTP_STATUS } from "@/utils/responseHandler";
 import Warehouse from "@/models/warehouseModel";
 
 const getAllWarehouse = async (req: Request, res: Response) => {
-  console.log("Get all warehouse");
   try {
     let warehouse = await Warehouse.find({}, { __v: 0 }).lean().exec();
 

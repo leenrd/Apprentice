@@ -4,6 +4,7 @@ import Users from "@/pages/admin/outlets/Users";
 import Settings from "@/pages/admin/Settings";
 import RootPage from "@pages/admin/RootPage";
 import ErrorPage from "@/components/ui/shared/ErrorPage";
+import Warehouse from "@/pages/admin/outlets/Warehouse";
 
 const adminRoute = [
   {
@@ -26,6 +27,10 @@ const adminRoute = [
       {
         path: "settings",
         element: <Settings />,
+      },
+      {
+        path: "warehouse/:id",
+        element: <Warehouse />,
       },
     ],
   },

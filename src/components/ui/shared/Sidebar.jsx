@@ -15,34 +15,25 @@ import {
   ChevronUp,
   Warehouse,
 } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { LogoutHelperFn } from "@/features/auth/auth-client-helpers";
 import useToggle from "@/hooks/useToggle";
 import { Button, Dialog, DialogPanel } from "@tremor/react";
 import { Children, useState } from "react";
-
-const data_warehouse = [
-  { id: "1", name: "Warehouse 1" },
-  { id: "2", name: "Warehouse x" },
-  { id: "3", name: "Warehouse x" },
-  { id: "4", name: "Warehouse x" },
-  { id: "5", name: "Warehouse x" },
-  { id: "5", name: "Warehouse x" },
-  { id: "5", name: "Warehouse x" },
-  { id: "5", name: "Warehouse x" },
-  { id: "5", name: "Warehouse x" },
-  { id: "5", name: "Warehouse x" },
-  { id: "5", name: "Warehouse x" },
-  { id: "5", name: "Warehouse x" },
-  { id: "5", name: "Warehouse x" },
-  { id: "5", name: "Warehouse x" },
-  { id: "5", name: "Warehouse x" },
-];
+import callAPI from "@/utils/axiosInstance";
 
 const Sidebar = () => {
   const { userAuth, logout } = useAuth();
   const [value, setToggle] = useToggle(false);
   const navigate = useNavigate();
+
+  const { data, error, isPending, isError } = useQuery({
+    queryKey: ["warehouse"],
+    queryFn: async () => {
+      const { data } = await callAPI.get("/api/warehouse");
+      return data;
+    },
+  });
 
   const logoutMutation = useMutation({
     mutationFn: LogoutHelperFn,
@@ -99,13 +90,13 @@ const Sidebar = () => {
               Resource
             </h1>
             <FlattenTabs visibleItemCount={4}>
-              {data_warehouse.map((item) => {
+              {data?.map((item) => {
                 return (
                   <Tab
                     label={item.name}
-                    key={item.id}
+                    key={item._id}
                     Icon={Warehouse}
-                    to={`/warehouse?list=${item.id}`}
+                    to={`/warehouse/${item._id}`}
                   />
                 );
               })}

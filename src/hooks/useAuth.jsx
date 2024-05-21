@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { jwtDecode } from "jwt-decode";
 import queryProvider from "@/utils/queryProvider";
+
 const AuthContext = createContext(null);
 
 export const useAuth = () => {

@@ -11,11 +11,11 @@ A Full-stack Inventory Management Application (IMS) created using MERN (MongoDB,
 - [x] auth
 - [x] rbac
 - [] admin crud for warehouse
-- [] admin crud for users
+- [] admin crud for users / table pagination
 - [] admin transactions / graphs
 - [] admin logs / recent activities
 - [] admin settings
-- [] admin warehouse mng sidebar
+- [x] admin warehouse mng sidebar
 
 - [] staff crud for items
 - [] staff transactions / graphs

@@ -1,15 +1,25 @@
 import PropTypes from "prop-types";
 import { RiSearchLine } from "@remixicon/react";
 import { TextInput, Button } from "@tremor/react";
-import { PackagePlus, Warehouse } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/dropdown";
+import {
+  Blocks,
+  ChevronDown,
+  PackagePlus,
+  User,
+  Warehouse,
+} from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import AccountType from "@/utils/authRoleConstant";
 import useToggle from "@/hooks/useToggle";
-import AddWarehouseModal from "@/features/admin/addWarehouseModal";
+// import AddWarehouseModal from "@/features/admin/addWarehouseModal";
 
 const OutletHeader = ({ title, subText, type, searchPlaceholder }) => {
-  const [value, setToggle] = useToggle(false);
-
   return (
     <div className="border-b-slate border-b-2 px-9 py-[0.7rem] ml-[15rem] flex items-center justify-between">
       <div>
@@ -20,11 +30,7 @@ const OutletHeader = ({ title, subText, type, searchPlaceholder }) => {
         <div className="flex gap-2">
           {" "}
           {type !== "settings" ? (
-            <SearchBar
-              searchPlaceholder={searchPlaceholder}
-              toggle={setToggle}
-              value={value}
-            />
+            <SearchBar searchPlaceholder={searchPlaceholder} />
           ) : null}
         </div>
       </div>
@@ -32,17 +38,38 @@ const OutletHeader = ({ title, subText, type, searchPlaceholder }) => {
   );
 };
 
-const SearchBar = ({ searchPlaceholder = "Search", toggle, value }) => {
+const SearchBar = ({ searchPlaceholder = "Search" }) => {
+  const [value, setToggle] = useToggle(false);
   const { userAuth } = useAuth();
 
   return (
     <>
-      {!value ? null : <AddWarehouseModal toggle={toggle} value={value} />}
       <TextInput icon={RiSearchLine} placeholder={searchPlaceholder} />{" "}
       {userAuth.role === AccountType.Admin ? (
-        <Button onClick={toggle}>
-          <Warehouse className="h-5 w-5" />
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button onClick={setToggle}>
+              <span className="flex gap-3">
+                <Blocks className="h-5 w-5" />
+                <ChevronDown className="h-5 w-5" />
+              </span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>
+              <span className="flex items-center gap-x-2">
+                <User className="size-5 text-tremor-label" />
+                <span className="text-base font-semibold">New User</span>
+              </span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={setToggle}>
+              <span className="flex items-center gap-x-2">
+                <Warehouse className="size-5 " />
+                <span className="text-base  font-semibold">New Warehouse</span>
+              </span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       ) : (
         <Button>
           <PackagePlus className="h-5 w-5" />

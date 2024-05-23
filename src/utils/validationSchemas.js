@@ -14,3 +14,13 @@ export const signUpSchema = y.object().shape({
     .oneOf([y.ref("password"), null]),
   role: y.string().required().oneOf(["admin", "staff"]),
 });
+
+export const warehouseSchema = y.object().shape({
+  name: y.string().required(),
+  capacity: y.number().required().min(1, "Invalid capacity"),
+  status: y
+    .string()
+    .required()
+    .oneOf(["operational", "downtime", "maintenance"]),
+  manager: y.string().required(),
+});

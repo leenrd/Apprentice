@@ -1,4 +1,5 @@
-import { Card, ProgressCircle } from "@tremor/react";
+import { Badge, Card, ProgressCircle } from "@tremor/react";
+import { RiRecordCircleFill } from "@remixicon/react";
 
 const WarehouseOverview = () => {
   const data = [
@@ -36,30 +37,34 @@ const WarehouseOverview = () => {
 
   return (
     <div className="flex-1 min-h-fit h-full">
-      <h1 className="font-bold text-md md:text-lg lg:text-xl mb-2">
-        Warehouses&apos; Overview
-      </h1>
-      <Card className="px-10 py-7 h-[353px] overflow-scroll no-scrollbar">
+      <div className="flex justify-between items-center">
+        <h1 className="font-bold text-md md:text-lg lg:text-xl mb-2">
+          Warehouses&apos; Overview
+        </h1>
+        <Badge icon={RiRecordCircleFill} color="green">
+          All {data.length} Operational
+        </Badge>
+      </div>
+      <Card className="px-5 py-7 h-[353px] overflow-scroll no-scrollbar">
         {data.map((item) => {
           return (
-            <div
-              className="flex justify-start space-x-5 items-center mb-5"
-              key={item.id}
-            >
-              <ProgressCircle value={item.value} size="md">
-                <span className="text-xs font-medium text-slate-700">
-                  {item.value}%
-                </span>
-              </ProgressCircle>
-              <div>
-                <p className="text-tremor-default text-tremor-content-strong dark:text-dark-tremor-content-strong font-medium">
-                  {item.name} (75%)
-                </p>
-                <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-                  Capacity management control
-                </p>
+            <Card key={item.id} className="mb-2">
+              <div className="flex justify-start space-x-5 items-center">
+                <ProgressCircle value={item.value} size="md">
+                  <span className="text-xs font-medium text-slate-700">
+                    {item.value}%
+                  </span>
+                </ProgressCircle>
+                <div>
+                  <p className="text-tremor-default text-tremor-content-strong dark:text-dark-tremor-content-strong font-medium">
+                    {item.name} (75%)
+                  </p>
+                  <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+                    Capacity management control
+                  </p>
+                </div>
               </div>
-            </div>
+            </Card>
           );
         })}
       </Card>

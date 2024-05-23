@@ -34,12 +34,14 @@ const Warehouse = () => {
               <TabList className="mt-4 mb-10">
                 <Tab>Overview</Tab>
                 <Tab>Items</Tab>
+                <Tab>Settings</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>
                   <TabPanelWarehouseOverview id={id} />
                   <RecentActivity />
                 </TabPanel>
+                <TabPanel>{/* table */}</TabPanel>
                 <TabPanel>{/* table */}</TabPanel>
               </TabPanels>
             </TabGroup>
